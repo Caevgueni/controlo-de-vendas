@@ -23,7 +23,7 @@ public class ClienteDAO {
         
         // primeiro passo criar o comando sql
         try{
-        String sql="insert td_clientes(nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)"
+        String sql="insert tb_clientes(nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)"
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         
          //conectar com o banco de dado e organizar o comamndo sql
