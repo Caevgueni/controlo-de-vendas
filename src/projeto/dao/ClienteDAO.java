@@ -59,11 +59,59 @@ public class ClienteDAO {
 
     // alterar cliente
     public void alterarCliente() {
+        
+        try {
+            // 1 primeiro passo criar o comando sql
+            String sql = "update tb_clientes set nome=?,rg=?,cpf=?,email=?,telefone=?,celular=?"
+                    + ",cep=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=? where id=?";
+
+            // 2 passo conectar com o banco de dado e organizar o comamndo sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getNome()); // isto colacar na primeira intorugacao o que vier dentro de atrebuto obj.jetNome
+            stmt.setString(2, obj.getRg()); // isto colacar na primeira intorugacao o que vier dentro de atrebuto obj.jetNome
+            stmt.setString(3, obj.getCpf());
+            stmt.setString(4, obj.getEmail());
+            stmt.setString(5, obj.getTelefone());
+            stmt.setString(6, obj.getTelemovel());
+            stmt.setString(7, obj.getCep());
+            stmt.setString(8, obj.getEndereco());
+            stmt.setInt(9, obj.getNumero());
+            stmt.setString(10, obj.getComplemento());
+            stmt.setString(11, obj.getBairro());
+            stmt.setString(12, obj.getCidade());
+            stmt.setString(13, obj.getUf());
+
+            // 3 passo Executar comando sql
+            stmt.execute();
+            stmt.close(); // para ele fechar a conexao apos a execucaoo
+            JOptionPane.showMessageDialog(null, "cadastrado com sucesso!");
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ERRO" + erro);
+
+        }
 
     }
     // excluir ciente
 
-    public void excluirCliente() {
+    public void excluirCliente(Clientes obj) {
+        
+        try {
+            // 1 primeiro passo criar o comando sql
+            String sql = "delecte from tb_clientes where id= ?";
+
+            // 2 passo conectar com o banco de dado e organizar o comamndo sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId()); // isto colacar na primeira intorugacao o que vier dentro de atrebuto obj.jetNome
+            
+
+            // 3 passo Executar comando sql
+            stmt.execute();
+            stmt.close(); // para ele fechar a conexao apos a execucaoo
+            JOptionPane.showMessageDialog(null, "Ecluido com sucesso!");
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ERRO" + erro);
+
+        }
 
     }
 
