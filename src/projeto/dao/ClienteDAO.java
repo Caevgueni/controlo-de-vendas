@@ -58,7 +58,7 @@ public class ClienteDAO {
     }
 
     // alterar cliente
-    public void alterarCliente() {
+    public void alterarCliente(Clientes obj) {
         
         try {
             // 1 primeiro passo criar o comando sql
@@ -80,11 +80,12 @@ public class ClienteDAO {
             stmt.setString(11, obj.getBairro());
             stmt.setString(12, obj.getCidade());
             stmt.setString(13, obj.getUf());
+            stmt.setInt(14, obj.getId());
 
             // 3 passo Executar comando sql
             stmt.execute();
             stmt.close(); // para ele fechar a conexao apos a execucaoo
-            JOptionPane.showMessageDialog(null, "cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Alterado  com sucesso!");
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "ERRO" + erro);
 
@@ -97,7 +98,7 @@ public class ClienteDAO {
         
         try {
             // 1 primeiro passo criar o comando sql
-            String sql = "delecte from tb_clientes where id= ?";
+            String sql = "delete from tb_clientes where id= ?";
 
             // 2 passo conectar com o banco de dado e organizar o comamndo sql
             PreparedStatement stmt = con.prepareStatement(sql);

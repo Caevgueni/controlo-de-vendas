@@ -282,6 +282,11 @@ public class Frmcliente extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton6.setText("EXCLUIR");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         btnsalvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnsalvar.setText("SALVAR");
@@ -293,6 +298,11 @@ public class Frmcliente extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton8.setText("EDITAR");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton9.setText("NOVO");
@@ -473,6 +483,11 @@ public class Frmcliente extends javax.swing.JFrame {
                 "Código:", "Nome:", "RG:", "CPF", "E-mail:", "Telefone:", "Telemovel:", "Cepf:", "Endereço:", "Nº:", "Comp:", "Bairro", "Cidade:", "UF:"
             }
         ));
+        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaClientes);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -640,6 +655,72 @@ public class Frmcliente extends javax.swing.JFrame {
         // carrega lista
         listar();
     }//GEN-LAST:event_jPanel3AncestorAdded
+
+    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+         
+        // pegue os comandos
+     
+        jTabbedPane1.setSelectedIndex(0); // este comando passa os dados da pabela pa abo de cadastro para que possamos fazer edicao
+        
+        txtcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),0).toString());
+        // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
+        txtnome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),1).toString());
+        txtrg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),2).toString());
+        txtcpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),3).toString());
+        txtemail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),4).toString());
+        txttelefone.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),5).toString());
+        txttelemovel.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),6).toString());
+        txtcep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),7).toString());
+        txtendereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),8).toString());
+        txtnumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),9).toString());
+        txtcomplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),10).toString());
+        txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),11).toString());
+        txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),12).toString());
+        cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),13).toString());
+    }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+
+
+        
+        
+        // btn editar o banco de dado        
+            
+            Clientes obj = new Clientes();
+            
+            obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
+            obj.setRg(txtrg.getText());
+            obj.setCpf(txtcpf.getText());
+            obj.setEmail(txtemail.getText());
+            obj.setTelefone(txttelefone.getText());
+            obj.setTelemovel(txttelemovel.getText());
+            obj.setCep(txtcep.getText());
+            obj.setCep(txtcep.getText());
+            obj.setEndereco(txtendereco.getText());
+            obj.setNumero(Integer.parseInt(txtnumero.getText()));
+            obj.setComplemento(txtcomplemento.getText());
+            obj.setBairro(txtbairro.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setUf(cbuf.getSelectedItem().toString());
+
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+            ClienteDAO dao= new ClienteDAO();
+            dao.alterarCliente(obj);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+
+        // excluir
+        Clientes obj = new Clientes();
+            
+            
+
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+            ClienteDAO dao= new ClienteDAO();
+            dao.excluirCliente(obj); 
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
