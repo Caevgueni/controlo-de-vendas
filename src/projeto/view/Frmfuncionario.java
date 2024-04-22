@@ -773,28 +773,30 @@ public class Frmfuncionario extends javax.swing.JFrame {
 
         // botao de pesquisar cliente po nome 
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClienteDAO dao = new ClienteDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> lista = dao.buscaFuncionarioPorNome(nome);
         DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Funcionario f : lista) {
             dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                
-                c.getTelefone(),
-                c.getTelemovel(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
+                f.getId(),
+                f.getNome(),
+                f.getRg(),
+                f.getCpf(),
+                f.getEmail(),
+                f.getSenha(),
+                f.getCargo(),
+                f.getNivel_acesso(),
+                f.getTelefone(),
+                f.getTelemovel(),
+                f.getCep(),
+                f.getEndereco(),
+                f.getNumero(),
+                f.getComplemento(),
+                f.getBairro(),
+                f.getCidade(),
+                f.getUf()
             });
         }
 
@@ -811,8 +813,8 @@ public class Frmfuncionario extends javax.swing.JFrame {
         // botao busca cliente pelo nome
         
             String nome = txtnome.getText();
-            Clientes obj = new Clientes();
-            ClienteDAO dao = new ClienteDAO();
+            Funcionario obj = new Funcionario();
+            FuncionarioDAO dao = new FuncionarioDAO();
             obj = dao.consultaPorNome(nome);
             if(obj.getNome() !=null){
             // exibir dados do obj nos campos de textos
@@ -822,6 +824,9 @@ public class Frmfuncionario extends javax.swing.JFrame {
             txtrg.setText(obj.getRg());
             txtcpf.setText(obj.getCpf());
             txtemail.setText(obj.getEmail());
+            txtsenha.setText(obj.getSenha());
+            txtcargo.setText(obj.getCargo());
+            cbunivel.setSelectedItem(obj.getNivel_acesso());
             txttelefone.setText(obj.getTelefone());
             txttelemovel.setText(obj.getTelemovel());
             txtcep.setText(obj.getCep());
