@@ -65,7 +65,7 @@ public class FuncionarioDAO {
         
         try {
             // 1 primeiro passo criar o comando sql
-            String sql = "update tb_funcionarios set nome=?,rg=?,cpf=?,email=?,senha= ?,cargo=?, nivel_acesso=?,telefone=?,celular=?"
+            String sql = "update tb_funcionarios set nome=?,rg=?,cpf=?,email=?,senha=?,cargo=?,nivel_acesso=?,telefone=?,celular=?"
                     + ",cep=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=? where id=?";
 
             // 2 passo conectar com o banco de dado e organizar o comamndo sql
@@ -77,7 +77,6 @@ public class FuncionarioDAO {
             stmt.setString(5, obj.getSenha());
             stmt.setString(6, obj.getCargo());
             stmt.setString(7, obj.getNivel_acesso());
-            
             stmt.setString(8, obj.getTelefone());
             stmt.setString(9, obj.getTelemovel());
             stmt.setString(10, obj.getCep());
