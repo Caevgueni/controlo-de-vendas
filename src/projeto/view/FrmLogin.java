@@ -41,7 +41,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jToggleButton1.setText("jToggleButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seja bem vindo ao sistema - Autenticação");
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
@@ -161,6 +161,7 @@ public class FrmLogin extends javax.swing.JFrame {
             FuncionarioDAO dao = new FuncionarioDAO();
             
             dao.efetuarLogin(email, senha);
+            this.dispose(); // issso quer dizer que este formulario irá se esconde apos execucao
             
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "erro");
