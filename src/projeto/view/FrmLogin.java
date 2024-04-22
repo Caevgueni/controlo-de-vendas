@@ -4,6 +4,9 @@
  */
 package projeto.view;
 
+import javax.swing.JOptionPane;
+import projeto.dao.FuncionarioDAO;
+
 /**
  *
  * @author itais
@@ -83,6 +86,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnentrar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnentrar.setText("ENTRAR");
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnentrarActionPerformed(evt);
+            }
+        });
 
         btnsair.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnsair.setText("SAIR");
@@ -143,6 +151,23 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
+
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
+        // Botao entrar
+        try {
+            String email, senha;
+            email = txtemail.getText();
+            senha = txtsenha.getText();
+            FuncionarioDAO dao = new FuncionarioDAO();
+            
+            dao.efetuarLogin(email, senha);
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "erro");
+        }
+
+      
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     /**
      * @param args the command line arguments

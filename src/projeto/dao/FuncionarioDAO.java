@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
 import projeto.model.Clientes;
 import projeto.model.Funcionario;
+import projeto.view.Frmmenu;
 
 
 public class FuncionarioDAO {
@@ -262,4 +263,32 @@ public class FuncionarioDAO {
             return null; // isto é para ele nao retornar nada caso haja erro
         }
     }
+    
+    // metodo de efectuar login
+    public void efetuarLogin(String email,String senha){
+        
+        try{
+        String sql= "select * from tb_funcionarios where email=? and senha=?";
+         PreparedStatement stmt = con.prepareStatement(sql);
+             stmt.setString(1, email);
+             stmt.setString(2,senha);
+              ResultSet rs = stmt.executeQuery();
+              if(rs.next()){
+                  // usuario logou
+                  JOptionPane.showMessageDialog(null, "seja bem vindo ao sistema");
+                  Frmmenu tela = new Frmmenu();
+                  tela.setVisible(true);
+              } else {
+                  // dados incorretos
+                   JOptionPane.showMessageDialog(null, "email ou senha incorreto");
+              }
+        }
+              catch(Exception erro){
+                       JOptionPane.showMessageDialog(null, "erro" + erro);
+                      
+                      }
+                      
+                    
+    }
+    
 }
