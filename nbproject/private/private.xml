@@ -6,8 +6,12 @@
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Clientes.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/factory/jdbc/TestConexao.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/factory/jdbc/ConnectionFactory.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/FuncionarioDAO.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Funcionario.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmcliente.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmfuncionario.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Utilitarios.java</file>
         </group>
     </open-files>
 </project-private>

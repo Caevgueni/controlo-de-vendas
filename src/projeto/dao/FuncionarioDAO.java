@@ -3,7 +3,10 @@ package projeto.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
 import projeto.model.Clientes;
@@ -23,7 +26,7 @@ public class FuncionarioDAO {
 
         try {
             // 1 primeiro passo criar o comando sql
-            String sql = "insert tb_funcionaris(nome,rg,cpf,email,senha,cargo,nivel_acesso,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)"
+            String sql = "insert tb_funcionarios(nome,rg,cpf,email,senha,cargo,nivel_acesso,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)"
                     + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             // 2 passo conectar com o banco de dado e organizar o comamndo sql
@@ -54,5 +57,51 @@ public class FuncionarioDAO {
 
         }
 
+    }
+    // metodo Listar todos os clientes 
+    public List<Funcionario> listaFuncionario() {
+        try {
+            // 1  primeiro passo criar a lista
+            List<Funcionario> lista = new ArrayList<>();
+
+            // 2 criar o sql, organizar e executar
+            String sql = "select *from tb_funcionarios";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // quando se usa um liste o resultado da execucao e guardado neste variavel "ResultSet" 
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) { // equndo ele precurer os registe que ele encpntro rs ele vai criar um objeto do tipo cliente vamos capturar e passar para objetos em baixo
+
+                Funcionario obj = new Funcionario();
+
+                obj.setId(rs.getInt("id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setNome(rs.getString("nome"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setSenha(rs.getString("senha"));
+                obj.setCargo(rs.getString("cargo"));
+                obj.setNivel_acesso(rs.getString("nivel_acesso"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setTelemovel(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+                // uma vez montado objetos pricisamos de lhe colocar o mesmo na lista
+
+                // fica de seguinte maneira
+                lista.add(obj);
+            }
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro" + erro);
+            return null; // isto é para ele nao retornar nada caso haja erro
+        }
     }
 }
