@@ -6,7 +6,10 @@ package projeto.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
 import projeto.model.Clientes;
@@ -117,6 +120,132 @@ public class FornecedorDAO {
         }
 
     }
+    
+     // metodo Listar todos os fornecedores
+    public List<Fornecedores> listaFornecedores() {
+        try {
+            // 1  primeiro passo criar a lista
+            List<Fornecedores> lista = new ArrayList<>();
+
+            // 2 criar o sql, organizar e executar
+            String sql = "select *from tb_fornecedores";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // quando se usa um liste o resultado da execucao e guardado neste variavel "ResultSet" 
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) { // equndo ele precurer os registe que ele encpntro rs ele vai criar um objeto do tipo cliente vamos capturar e passar para objetos em baixo
+
+                Fornecedores obj = new Fornecedores();
+
+                obj.setId(rs.getInt("id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setNome(rs.getString("nome"));
+                
+                obj.setCnpj(rs.getString("cnpj"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setTelemovel(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+                // uma vez montado objetos pricisamos de lhe colocar o mesmo na lista
+
+                // fica de seguinte maneira
+                lista.add(obj);
+            }
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro" + erro);
+            return null; // isto é para ele nao retornar nada caso haja erro
+        }
+    }
+     // Listar ofrnecedores por nome NA TABELA!!
+    public List<Fornecedores> buscaFornecedoresPorNome(String nome) {
+        try {
+            // 1  primeiro passo criar a lista
+            List<Fornecedores> lista = new ArrayList<>();
+
+            // 2 criar o sql, organizar e executar
+            String sql = "select * from tb_fornecedores where nome like?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+             stmt.setString(1, nome);
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) { 
+
+                Fornecedores obj = new Fornecedores();
+
+                obj.setId(rs.getInt("id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setNome(rs.getString("nome"));
+                obj.setCnpj(rs.getString("cnpj"));
+               
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setTelemovel(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+                // uma vez montado objetos pricisamos de lhe colocar o mesmo na lista
+
+                // fica de seguinte maneira
+                lista.add(obj);
+            }
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro" + erro);
+            return null; // isto é para ele nao retornar nada caso haja erro
+        }
+    }
+     // metodo ConsultaFornecedores por nome ATENCAO!!! ESTE METODO PARA FOMELARIO DE CADASTROS
+    public Fornecedores consultaPorNome(String nome){
+        try {
+            // 1 criar o sql, organizar e executar
+            String sql = "select * from tb_fornecedores where nome=?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+             stmt.setString(1, nome);
+              ResultSet rs = stmt.executeQuery();
+               Fornecedores obj = new Fornecedores();
+              if (rs.next()) { 
+
+               
+
+                obj.setId(rs.getInt("id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setNome(rs.getString("nome"));
+               
+                obj.setCnpj(rs.getString("cnpj"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setTelemovel(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+                // uma vez montado objetos pricisamos de lhe colocar o mesmo na lista
+
+                // fica de seguinte maneira
+              }return obj;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Cleinte nao encontrado" + e);
+            return null;
+        }
+    }
+    
 }
     
 
