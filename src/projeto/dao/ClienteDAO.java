@@ -22,7 +22,7 @@ public class ClienteDAO {
         this.con = new ConnectionFactory().getConnection(); // fizemos a cenecao com o banco de dado
     }
 
-    // cadatrar Cliente
+    // cadastrar Cliente
     public void cadastrarCliente(Clientes obj) {
 
         try {
