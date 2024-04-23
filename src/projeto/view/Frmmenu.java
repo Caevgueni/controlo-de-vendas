@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
  * @author itais
  */
 public class Frmmenu extends javax.swing.JFrame {
+    
+    public String usuariologado;
 
     /**
      * Creates new form Frmmenu
@@ -30,7 +32,7 @@ public class Frmmenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon= new ImageIcon(getClass().getResource("/imagens/imagen.jpg"));
+        ImageIcon icon= new ImageIcon(getClass().getResource("/imagens/fundo.jpg"));
 
         Image image =icon.getImage();
         paineldesktop = new javax.swing.JDesktopPane(){
@@ -41,6 +43,9 @@ public class Frmmenu extends javax.swing.JFrame {
             }
 
         };
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblusuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -67,15 +72,46 @@ public class Frmmenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Usuário Logado:");
+
+        lblusuario.setBackground(new java.awt.Color(0, 0, 153));
+        lblusuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblusuario.setForeground(new java.awt.Color(0, 102, 153));
+        lblusuario.setText("Carlos Mário Fernandes");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 355, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 9, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblusuario)))
+        );
+
+        paineldesktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout paineldesktopLayout = new javax.swing.GroupLayout(paineldesktop);
         paineldesktop.setLayout(paineldesktopLayout);
         paineldesktopLayout.setHorizontalGroup(
             paineldesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         paineldesktopLayout.setVerticalGroup(
             paineldesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paineldesktopLayout.createSequentialGroup()
+                .addGap(0, 331, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/clientes.png"))); // NOI18N
@@ -150,15 +186,11 @@ public class Frmmenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(paineldesktop))
+            .addComponent(paineldesktop, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(paineldesktop))
+            .addComponent(paineldesktop, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -172,6 +204,7 @@ public class Frmmenu extends javax.swing.JFrame {
 
          //deixar maximizado
          this.setExtendedState(this.MAXIMIZED_BOTH);
+         lblusuario.setText(usuariologado);
          this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
@@ -211,6 +244,7 @@ public class Frmmenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -228,6 +262,8 @@ public class Frmmenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblusuario;
     private javax.swing.JDesktopPane paineldesktop;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,7 +13,7 @@ public class Utilitarios {
         Component components[]= container.getComponents();
         for (Component component: components){
             if(component instanceof JTextField){
-                ((JTextField)component).setText(null);// ele vai precorer cada campo i vai setar o texto pa null 
+                ((JTextField)component).setText(null);// ele vai precorer cada campo i vai setar o texto para null 
             }
         }
     }
