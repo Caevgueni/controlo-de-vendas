@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
 import projeto.model.Clientes;
 import projeto.model.Funcionario;
+import projeto.view.FrmLogin;
 import projeto.view.Frmmenu;
 
 
@@ -282,6 +283,7 @@ public class FuncionarioDAO {
               } else {
                   // dados incorretos
                    JOptionPane.showMessageDialog(null, "email ou senha incorreto");
+                   new FrmLogin().setVisible(true);
               }
         }
               catch(Exception erro){
