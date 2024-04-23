@@ -7,26 +7,25 @@ package projeto.view;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import projeto.dao.ClienteDAO;
+
 import projeto.dao.FornecedorDAO;
-import projeto.model.Clientes;
+
 import projeto.model.Fornecedores;
 import projeto.model.Utilitarios;
 
 public class FrmFornecedores extends javax.swing.JFrame {
 
     public void listar() {
-        ClienteDAO dao = new ClienteDAO();
-        List<Clientes> lista = dao.listaClisentes();
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        FornecedorDAO dao = new FornecedorDAO();
+        List<Fornecedores> lista = dao.listaFornecedores();
+        DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Fornecedores c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getRg(),
-                c.getCpf(),
+                c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getTelemovel(),
@@ -95,7 +94,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         txtpesquisa = new javax.swing.JTextField();
         btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaClientes = new javax.swing.JTable();
+        tabelafornecedores = new javax.swing.JTable();
         jButton8 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -424,7 +423,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
             }
         });
 
-        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tabelafornecedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -435,12 +434,12 @@ public class FrmFornecedores extends javax.swing.JFrame {
                 "Código:", "Nome:", "CNPJ:", "E-mail:", "Telefone:", "Telemovel:", "Cep:", "Endereço:", "Nº:", "Comp:", "Bairro", "Cidade:", "UF:"
             }
         ));
-        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelafornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaClientesMouseClicked(evt);
+                tabelafornecedoresMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaClientes);
+        jScrollPane1.setViewportView(tabelafornecedores);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -619,52 +618,48 @@ public class FrmFornecedores extends javax.swing.JFrame {
         listar();
     }//GEN-LAST:event_jPanel3AncestorAdded
 
-    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+    private void tabelafornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelafornecedoresMouseClicked
 
         // pegue os comandos
         jTabbedPane1.setSelectedIndex(0); // este comando passa os dados da pabela pa abo de cadastro para que possamos fazer edicao
 
-        txtcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
+        txtcodigo.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 0).toString());
         // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-        txtnome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
-        txtcnpj.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
-        txtemail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
-        txttelefone.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
-        txttelemovel.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
-        txtnumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
-        txtcomplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
-        cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
-    }//GEN-LAST:event_tabelaClientesMouseClicked
+        txtnome.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 1).toString());
+        txtcnpj.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 2).toString());
+        txtemail.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 3).toString());
+        txttelefone.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 4).toString());
+        txttelemovel.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 5).toString());
+        txtcep.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 6).toString());
+        txtendereco.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 7).toString());
+        txtnumero.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 8).toString());
+        txtcomplemento.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 9).toString());
+        txtbairro.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 10).toString());
+        txtcidade.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 11).toString());
+        cbuf.setSelectedItem(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 12).toString());
+    }//GEN-LAST:event_tabelafornecedoresMouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         // btn editar o banco de dado        
-        Clientes obj = new Clientes();
+        Fornecedores obj = new Fornecedores();
 
         obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
-        obj.setRg(txtcnpj.getText());
-        obj.setCpf(txtcpf.getText());
+        obj.setCnpj(txtcnpj.getText());
         obj.setEmail(txtemail.getText());
         obj.setTelefone(txttelefone.getText());
         obj.setTelemovel(txttelemovel.getText());
-        obj.setCep(txtcep.getText());
         obj.setCep(txtcep.getText());
         obj.setEndereco(txtendereco.getText());
         obj.setNumero(Integer.parseInt(txtnumero.getText()));
         obj.setComplemento(txtcomplemento.getText());
         obj.setBairro(txtbairro.getText());
         obj.setCidade(txtcidade.getText());
-        obj.setCidade(txtcidade.getText());
         obj.setUf(cbuf.getSelectedItem().toString());
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-        ClienteDAO dao = new ClienteDAO();
-        dao.alterarCliente(obj);
+        FornecedorDAO dao = new FornecedorDAO();
+        dao.alterarFornecedores(obj);
 
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
@@ -673,30 +668,29 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
         // excluir
-        Clientes obj = new Clientes();
+        Fornecedores obj = new Fornecedores();
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-        ClienteDAO dao = new ClienteDAO();
-        dao.excluirCliente(obj);
+        FornecedorDAO dao = new FornecedorDAO();
+        dao.excluirFonecedores(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
 
-        // botao de pesquisar cliente po nome 
+        // botao de pesquisar fornecedores por nome 
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClienteDAO dao = new ClienteDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        FornecedorDAO dao = new FornecedorDAO();
+        List<Fornecedores> lista = dao.buscaFornecedoresPorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Fornecedores c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getRg(),
-                c.getCpf(),
+                c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getTelemovel(),
@@ -720,19 +714,19 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
 
-        // botao busca cliente pelo nome
+        // botao busca fornecedores pelo nome
         
             String nome = txtnome.getText();
-            Clientes obj = new Clientes();
-            ClienteDAO dao = new ClienteDAO();
+            Fornecedores obj = new Fornecedores();
+           FornecedorDAO dao = new FornecedorDAO();
             obj = dao.consultaPorNome(nome);
             if(obj.getNome() !=null){
             // exibir dados do obj nos campos de textos
             txtcodigo.setText(String.valueOf(obj.getId()));
             // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
             txtnome.setText(obj.getNome());
-            txtcnpj.setText(obj.getRg());
-            txtcpf.setText(obj.getCpf());
+            
+            txtcnpj.setText(obj.getCnpj());
             txtemail.setText(obj.getEmail());
             txttelefone.setText(obj.getTelefone());
             txttelemovel.setText(obj.getTelemovel());
@@ -745,7 +739,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
             cbuf.setSelectedItem(obj.getUf());
             }
             else {
-                JOptionPane.showMessageDialog(null,"cliente nao encontrado!!");
+                JOptionPane.showMessageDialog(null,"forncedor nao encontrado!!");
             }
 
         
@@ -816,7 +810,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel painel_dados;
-    private javax.swing.JTable tabelaClientes;
+    private javax.swing.JTable tabelafornecedores;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;

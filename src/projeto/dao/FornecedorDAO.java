@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
-import projeto.model.Clientes;
+
 import projeto.model.Fornecedores;
 
 /**
@@ -90,7 +90,7 @@ public class FornecedorDAO {
         
         try {
             // 1 primeiro passo criar o comando sql
-            String sql = "update tb_clientes set nome=?,cnpj=?,email=?,telefone=?,celular=?"
+            String sql = "update tb_fornecedores set nome=?,cnpj=?,email=?,telefone=?,celular=?"
                     + ",cep=?,endereco=?,numero=?,complemento=?,bairro=?,cidade=?,estado=? where id=?";
 
             // 2 passo conectar com o banco de dado e organizar o comamndo sql
@@ -171,7 +171,7 @@ public class FornecedorDAO {
             List<Fornecedores> lista = new ArrayList<>();
 
             // 2 criar o sql, organizar e executar
-            String sql = "select * from tb_fornecedores where nome like?";
+            String sql = "select*from tb_fornecedores where nome like?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
              stmt.setString(1, nome);
