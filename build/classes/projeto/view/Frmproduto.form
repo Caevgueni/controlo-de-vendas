@@ -140,28 +140,29 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtcodigo" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="txtnome" min="-2" pref="330" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnbusca" min="-2" pref="92" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="cbuf" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" min="-2" pref="67" max="-2" attributes="0"/>
+                                  <Component id="txtcodigo" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtnome" min="-2" pref="330" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnbusca" min="-2" pref="92" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtemail" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
+                                  <Component id="cbfornecedores" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="250" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtemail" min="-2" pref="228" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace pref="176" max="32767" attributes="0"/>
                               <Component id="txtendereco" min="-2" pref="164" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="1043" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="946" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -191,7 +192,7 @@
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbuf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbfornecedores" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -303,7 +304,7 @@
                 <Property name="text" type="java.lang.String" value="Fornecedores:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbuf">
+            <Component class="javax.swing.JComboBox" name="cbfornecedores">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -312,8 +313,11 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="cbfornecedoresAncestorAdded"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnbusca">
