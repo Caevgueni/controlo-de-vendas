@@ -94,7 +94,7 @@ public class ProdutoDAO {
     
  
      // metodo Alterar produto
-      public void alterar(Produtos obj) {
+      public void alterarProduto(Produtos obj) {
 
         try {
 
@@ -123,10 +123,10 @@ public class ProdutoDAO {
 
     }
       // Metodo excluir
-      public void ecluir(Produtos obj){
+      public void excluirProduto(Produtos obj){
           
           try{
-           String sql ="delete from td_produtos where id=?"; 
+           String sql ="delete from tb_produtos where id=? "; 
           PreparedStatement stmt = con.prepareStatement(sql);
           stmt.setInt(1, obj.getId());
           stmt.execute();

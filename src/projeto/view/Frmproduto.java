@@ -485,7 +485,7 @@ public class Frmproduto extends javax.swing.JFrame {
         
         ProdutoDAO dao = new ProdutoDAO();
           
-        dao.alterar(obj);
+        dao.alterarProduto(obj);
 
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
@@ -494,11 +494,11 @@ public class Frmproduto extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
         // excluir
-        Clientes obj = new Clientes();
+        Produtos obj = new Produtos();
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-        ClienteDAO dao = new ClienteDAO();
-        dao.excluirCliente(obj);
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.excluirProduto(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
     }//GEN-LAST:event_jButton6ActionPerformed
