@@ -9,8 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.dao.ClienteDAO;
 import projeto.dao.FornecedorDAO;
+import projeto.dao.ProdutoDAO;
 import projeto.model.Clientes;
 import projeto.model.Fornecedores;
+import projeto.model.Produtos;
 import projeto.model.Utilitarios;
 
 public class Frmproduto extends javax.swing.JFrame {
@@ -64,13 +66,13 @@ public class Frmproduto extends javax.swing.JFrame {
         painel_dados = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        txtnome = new javax.swing.JTextField();
+        txtdescricao = new javax.swing.JTextField();
         txtcodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtemail = new javax.swing.JTextField();
+        txtpreco = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtendereco = new javax.swing.JTextField();
+        txtqtd_estoque = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         cbfornecedores = new javax.swing.JComboBox();
         btnbusca = new javax.swing.JButton();
@@ -129,10 +131,10 @@ public class Frmproduto extends javax.swing.JFrame {
             .addGap(0, 302, Short.MAX_VALUE)
         );
 
-        txtnome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome.addActionListener(new java.awt.event.ActionListener() {
+        txtdescricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtdescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnomeActionPerformed(evt);
+                txtdescricaoActionPerformed(evt);
             }
         });
 
@@ -147,10 +149,10 @@ public class Frmproduto extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText(" Código:");
 
-        txtemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtemail.addActionListener(new java.awt.event.ActionListener() {
+        txtpreco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtemailActionPerformed(evt);
+                txtprecoActionPerformed(evt);
             }
         });
 
@@ -160,10 +162,10 @@ public class Frmproduto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Qtd. Estoque");
 
-        txtendereco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtendereco.addActionListener(new java.awt.event.ActionListener() {
+        txtqtd_estoque.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtqtd_estoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtenderecoActionPerformed(evt);
+                txtqtd_estoqueActionPerformed(evt);
             }
         });
 
@@ -205,17 +207,17 @@ public class Frmproduto extends javax.swing.JFrame {
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cbfornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 250, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(painel_dadosLayout.createSequentialGroup()
-                        .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtqtd_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(946, 946, 946))
@@ -232,13 +234,13 @@ public class Frmproduto extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnbusca))
                         .addGap(18, 18, 18)
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtqtd_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(29, 29, 29)
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -405,21 +407,21 @@ public class Frmproduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
+    private void txtdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnomeActionPerformed
+    }//GEN-LAST:event_txtdescricaoActionPerformed
 
     private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcodigoActionPerformed
 
-    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+    private void txtprecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtemailActionPerformed
+    }//GEN-LAST:event_txtprecoActionPerformed
 
-    private void txtenderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtenderecoActionPerformed
+    private void txtqtd_estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtqtd_estoqueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtenderecoActionPerformed
+    }//GEN-LAST:event_txtqtd_estoqueActionPerformed
 
     private void txtpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpesquisaActionPerformed
         // TODO add your handling code here:
@@ -428,25 +430,19 @@ public class Frmproduto extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // btn salvar no banco de dado        
 
-        Clientes obj = new Clientes();
-        obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txttelefone.getText());
-        obj.setTelemovel(txttelemovel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtendereco.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbfornecedores.getSelectedItem().toString());
-
-        ClienteDAO dao = new ClienteDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
-        dao.cadastrarCliente(obj);
+        Produtos obj = new Produtos();
+        obj.setDescricao(txtdescricao.getText()); // assim temos o obj clientes da classe com seguintes setters
+        obj.setPreco(Double.parseDouble(txtpreco.getText()));
+        obj.setQtd_estoque(Integer.parseInt(txtqtd_estoque.getText()));
+        
+        
+        // criar um objeto de fornecedpr
+        Fornecedores f= new Fornecedores();
+        f=(Fornecedores)cbfornecedores.getSelectedItem();
+        obj.setFornecedor(f);
+        
+        ProdutoDAO dao= new ProdutoDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
+        dao.cadastrar(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
 
@@ -465,14 +461,14 @@ public class Frmproduto extends javax.swing.JFrame {
 
         txtcodigo.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
         // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-        txtnome.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
+        txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
         txtrg.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
         txtcpf.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
-        txtemail.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
+        txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
         txttelefone.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 5).toString());
         txttelemovel.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 6).toString());
         txtcep.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 8).toString());
+        txtqtd_estoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 8).toString());
         txtnumero.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 9).toString());
         txtcomplemento.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 10).toString());
         txtbairro.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 11).toString());
@@ -485,15 +481,15 @@ public class Frmproduto extends javax.swing.JFrame {
         // btn editar o banco de dado        
         Clientes obj = new Clientes();
 
-        obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
+        obj.setNome(txtdescricao.getText()); // assim temos o obj clientes da classe com seguintes setters
         obj.setRg(txtrg.getText());
         obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtemail.getText());
+        obj.setEmail(txtpreco.getText());
         obj.setTelefone(txttelefone.getText());
         obj.setTelemovel(txttelemovel.getText());
         obj.setCep(txtcep.getText());
         obj.setCep(txtcep.getText());
-        obj.setEndereco(txtendereco.getText());
+        obj.setEndereco(txtqtd_estoque.getText());
         obj.setNumero(Integer.parseInt(txtnumero.getText()));
         obj.setComplemento(txtcomplemento.getText());
         obj.setBairro(txtbairro.getText());
@@ -561,7 +557,7 @@ public class Frmproduto extends javax.swing.JFrame {
 
         // botao busca cliente pelo nome
         
-            String nome = txtnome.getText();
+            String nome = txtdescricao.getText();
             Clientes obj = new Clientes();
             ClienteDAO dao = new ClienteDAO();
             obj = dao.consultaPorNome(nome);
@@ -569,14 +565,14 @@ public class Frmproduto extends javax.swing.JFrame {
             // exibir dados do obj nos campos de textos
             txtcodigo.setText(String.valueOf(obj.getId()));
             // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-            txtnome.setText(obj.getNome());
+            txtdescricao.setText(obj.getNome());
             txtrg.setText(obj.getRg());
             txtcpf.setText(obj.getCpf());
-            txtemail.setText(obj.getEmail());
+            txtpreco.setText(obj.getEmail());
             txttelefone.setText(obj.getTelefone());
             txttelemovel.setText(obj.getTelemovel());
             txtcep.setText(obj.getCep());
-            txtendereco.setText(obj.getEndereco());
+            txtqtd_estoque.setText(obj.getEndereco());
             txtnumero.setText(String.valueOf(obj.getNumero()));
             txtcomplemento.setText(obj.getComplemento());
             txtbairro.setText(obj.getBairro());
@@ -664,9 +660,9 @@ public class Frmproduto extends javax.swing.JFrame {
     private javax.swing.JPanel painel_dados;
     private javax.swing.JTable tabelaProdutos;
     private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txtendereco;
-    private javax.swing.JTextField txtnome;
+    private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtpesquisa;
+    private javax.swing.JTextField txtpreco;
+    private javax.swing.JTextField txtqtd_estoque;
     // End of variables declaration//GEN-END:variables
 }

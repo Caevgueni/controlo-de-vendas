@@ -8,7 +8,7 @@ public class Produtos {
     private int id;
     private String descricao;
     private double preco;
-    private String qtd_estoque;
+    private Integer qtd_estoque;
     private Fornecedores Fornecedor;
 
     
@@ -38,11 +38,11 @@ public class Produtos {
         this.preco = preco;
     }
 
-    public String getQtd_estoque() {
+    public Integer getQtd_estoque() {
         return qtd_estoque;
     }
 
-    public void setQtd_estoque(String qtd_estoque) {
+    public void setQtd_estoque(Integer qtd_estoque) {
         this.qtd_estoque = qtd_estoque;
     }
 
