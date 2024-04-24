@@ -453,44 +453,39 @@ public class Frmproduto extends javax.swing.JFrame {
         txtcodigo.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
         // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
         txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
-        txtrg.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
-        txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
-        txttelefone.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 5).toString());
-        txttelemovel.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 7).toString());
-        txtqtd_estoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 8).toString());
-        txtnumero.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 9).toString());
-        txtcomplemento.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 12).toString());
-        cbfornecedores.setSelectedItem(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 13).toString());
+        txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
+        txtqtd_estoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
+        
+          Fornecedores f = new Fornecedores();
+           FornecedorDAO dao = new FornecedorDAO();
+           f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
+           cbfornecedores.removeAllItems();
+           cbfornecedores.getModel().setSelectedItem(f);
+                  
+        
     }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         // btn editar o banco de dado        
-        Clientes obj = new Clientes();
+        Produtos obj = new Produtos();
 
-        obj.setNome(txtdescricao.getText()); // assim temos o obj clientes da classe com seguintes setters
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtpreco.getText());
-        obj.setTelefone(txttelefone.getText());
-        obj.setTelemovel(txttelemovel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtqtd_estoque.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbfornecedores.getSelectedItem().toString());
-
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-        ClienteDAO dao = new ClienteDAO();
-        dao.alterarCliente(obj);
+        obj.setId(Integer.parseInt(txtcodigo.getText())); // assim temos o obj clientes da classe com seguintes setters
+        
+        obj.setDescricao(txtdescricao.getText());
+        obj.setPreco(Double.parseDouble(txtpreco.getText()));
+        
+        obj.setQtd_estoque(Integer.parseInt(txtqtd_estoque.getText()));
+     
+        // criar objeto de fornecedor
+        
+        Fornecedores f= new Fornecedores();
+        f=(Fornecedores)cbfornecedores.getSelectedItem();
+        obj.setFornecedor(f);
+        
+        ProdutoDAO dao = new ProdutoDAO();
+          
+        dao.alterar(obj);
 
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);

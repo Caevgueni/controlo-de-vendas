@@ -92,4 +92,50 @@ public class ProdutoDAO {
         
     } 
     
+ 
+     // metodo Alterar produto
+      public void alterar(Produtos obj) {
+
+        try {
+
+            String sql = "update tb_produtos set descricao=?, preco=?,qtd_estoque=?, for_id=? where id=? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getDescricao());
+            stmt.setDouble(2, obj.getPreco());
+            stmt.setInt(3, obj.getQtd_estoque());
+
+            // neste caso o java vai pegar a informacao que veio 4 do objeto gornecedor, dando um getId para pegar o id desse fronecedor 
+            stmt.setInt(4, obj.getFornecedor().getId());
+            stmt.setInt(5, obj.getId());
+            
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso cuma sucesso");
+
+        } catch (Exception erro) {
+
+            JOptionPane.showMessageDialog(null, "erro: " + erro);
+
+        }
+
+    }
+      // Metodo excluir
+      public void ecluir(Produtos obj){
+          
+          try{
+           String sql ="delete from td_produtos where id=?"; 
+          PreparedStatement stmt = con.prepareStatement(sql);
+          stmt.setInt(1, obj.getId());
+          stmt.execute();
+          stmt.close();
+          JOptionPane.showMessageDialog(null," ProdutoAlterados  com sucesso" );
+          } catch(Exception erro){
+              JOptionPane.showMessageDialog(null,"Erro: " +erro);
+          }
+          
+      }
+    
 }
