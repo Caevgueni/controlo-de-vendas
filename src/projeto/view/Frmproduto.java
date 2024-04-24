@@ -18,27 +18,18 @@ import projeto.model.Utilitarios;
 public class Frmproduto extends javax.swing.JFrame {
 
     public void listar() {
-        ClienteDAO dao = new ClienteDAO();
-        List<Clientes> lista = dao.listaClisentes();
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produtos> lista = dao.listarProdutos();
         DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Produtos c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getTelemovel(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
+                c.getDescricao(),
+                c.getPreco(),
+                c.getQtd_estoque(),
+                c.getFornecedor().getNome()
             });
         }
 
