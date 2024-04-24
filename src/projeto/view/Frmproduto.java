@@ -263,6 +263,11 @@ public class Frmproduto extends javax.swing.JFrame {
                 txtpesquisaActionPerformed(evt);
             }
         });
+        txtpesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaKeyPressed(evt);
+            }
+        });
 
         btnpesquisar.setText("Pesquisar");
         btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -425,14 +430,13 @@ public class Frmproduto extends javax.swing.JFrame {
         obj.setDescricao(txtdescricao.getText()); // assim temos o obj clientes da classe com seguintes setters
         obj.setPreco(Double.parseDouble(txtpreco.getText()));
         obj.setQtd_estoque(Integer.parseInt(txtqtd_estoque.getText()));
-        
-        
+
         // criar um objeto de fornecedpr
-        Fornecedores f= new Fornecedores();
-        f=(Fornecedores)cbfornecedores.getSelectedItem();
+        Fornecedores f = new Fornecedores();
+        f = (Fornecedores) cbfornecedores.getSelectedItem();
         obj.setFornecedor(f);
-        
-        ProdutoDAO dao= new ProdutoDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
+
+        ProdutoDAO dao = new ProdutoDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
         dao.cadastrar(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
@@ -455,14 +459,14 @@ public class Frmproduto extends javax.swing.JFrame {
         txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
         txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
         txtqtd_estoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
-        
-          Fornecedores f = new Fornecedores();
-           FornecedorDAO dao = new FornecedorDAO();
-           f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
-           cbfornecedores.removeAllItems();
-           cbfornecedores.getModel().setSelectedItem(f);
-                  
-        
+
+        Fornecedores f = new Fornecedores();
+        FornecedorDAO dao = new FornecedorDAO();
+        f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
+        cbfornecedores.removeAllItems();
+        cbfornecedores.getModel().setSelectedItem(f);
+
+
     }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -471,20 +475,19 @@ public class Frmproduto extends javax.swing.JFrame {
         Produtos obj = new Produtos();
 
         obj.setId(Integer.parseInt(txtcodigo.getText())); // assim temos o obj clientes da classe com seguintes setters
-        
+
         obj.setDescricao(txtdescricao.getText());
         obj.setPreco(Double.parseDouble(txtpreco.getText()));
-        
+
         obj.setQtd_estoque(Integer.parseInt(txtqtd_estoque.getText()));
-     
+
         // criar objeto de fornecedor
-        
-        Fornecedores f= new Fornecedores();
-        f=(Fornecedores)cbfornecedores.getSelectedItem();
+        Fornecedores f = new Fornecedores();
+        f = (Fornecedores) cbfornecedores.getSelectedItem();
         obj.setFornecedor(f);
-        
+
         ProdutoDAO dao = new ProdutoDAO();
-          
+
         dao.alterarProduto(obj);
 
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
@@ -507,28 +510,18 @@ public class Frmproduto extends javax.swing.JFrame {
 
         // botao de pesquisar cliente po nome 
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClienteDAO dao = new ClienteDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produtos> lista = dao.listarProdutosPorNome(nome);
         DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Produtos c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getTelemovel(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
-            });
+                c.getDescricao(),
+                c.getPreco(),
+                c.getQtd_estoque(),
+                c.getFornecedor().getNome(),});
         }
 
     }//GEN-LAST:event_btnpesquisarActionPerformed
@@ -542,12 +535,11 @@ public class Frmproduto extends javax.swing.JFrame {
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
 
         // botao busca cliente pelo nome
-        
-            String nome = txtdescricao.getText();
-            Clientes obj = new Clientes();
-            ClienteDAO dao = new ClienteDAO();
-            obj = dao.consultaPorNome(nome);
-            if(obj.getNome() !=null){
+        String nome = txtdescricao.getText();
+        Clientes obj = new Clientes();
+        ClienteDAO dao = new ClienteDAO();
+        obj = dao.consultaPorNome(nome);
+        if (obj.getNome() != null) {
             // exibir dados do obj nos campos de textos
             txtcodigo.setText(String.valueOf(obj.getId()));
             // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
@@ -564,28 +556,46 @@ public class Frmproduto extends javax.swing.JFrame {
             txtbairro.setText(obj.getBairro());
             txtcidade.setText(obj.getCidade());
             cbfornecedores.setSelectedItem(obj.getUf());
-            }
-            else {
-                JOptionPane.showMessageDialog(null,"cliente nao encontrado!!");
-            }
+        } else {
+            JOptionPane.showMessageDialog(null, "cliente nao encontrado!!");
+        }
 
-        
+
     }//GEN-LAST:event_btnbuscaActionPerformed
 
     private void cbfornecedoresAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbfornecedoresAncestorAdded
 
-
         // Carregar o combobox no formulario de producto com nomes vindo da tabela funcionario:
         FornecedorDAO dao = new FornecedorDAO();
-               
-                List<Fornecedores> listadefornecedores = dao.listaFornecedores();
-                cbfornecedores.removeAll();
-                for (Fornecedores f: listadefornecedores) {
-                    cbfornecedores.addItem(f);
-                }
-        
-        
+
+        List<Fornecedores> listadefornecedores = dao.listaFornecedores();
+        cbfornecedores.removeAll();
+        for (Fornecedores f : listadefornecedores) {
+            cbfornecedores.addItem(f);
+        }
+
+
     }//GEN-LAST:event_cbfornecedoresAncestorAdded
+
+    private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
+
+        // pesquisar automatimente
+        String nome = "%" + txtpesquisa.getText() + "%";
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produtos> lista = dao.listarProdutosPorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
+        dados.setNumRows(0);
+
+        for (Produtos c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getDescricao(),
+                c.getPreco(),
+                c.getQtd_estoque(),
+                c.getFornecedor().getNome(),});
+        }
+
+    }//GEN-LAST:event_txtpesquisaKeyPressed
 
     /**
      * @param args the command line arguments
