@@ -32,7 +32,7 @@ public class Frmmenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon= new ImageIcon(getClass().getResource("/imagens/fundo.jpg"));
+        ImageIcon icon= new ImageIcon(getClass().getResource("/imagens/tigre.png"));
 
         Image image =icon.getImage();
         paineldesktop = new javax.swing.JDesktopPane(){

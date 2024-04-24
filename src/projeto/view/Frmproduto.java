@@ -7,25 +7,24 @@ package projeto.view;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-import projeto.dao.FornecedorDAO;
-
-import projeto.model.Fornecedores;
+import projeto.dao.ClienteDAO;
+import projeto.model.Clientes;
 import projeto.model.Utilitarios;
 
-public class FrmFornecedores extends javax.swing.JFrame {
+public class Frmproduto extends javax.swing.JFrame {
 
     public void listar() {
-        FornecedorDAO dao = new FornecedorDAO();
-        List<Fornecedores> lista = dao.listaFornecedores();
-        DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
+        ClienteDAO dao = new ClienteDAO();
+        List<Clientes> lista = dao.listaClisentes();
+        DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
         dados.setNumRows(0);
 
-        for (Fornecedores c : lista) {
+        for (Clientes c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getCnpj(),
+                c.getRg(),
+                c.getCpf(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getTelemovel(),
@@ -44,7 +43,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
     /**
      * Creates new form Frmcliente
      */
-    public FrmFornecedores() {
+    public Frmproduto() {
         initComponents();
     }
 
@@ -68,33 +67,17 @@ public class FrmFornecedores extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtemail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txttelemovel = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txttelefone = new javax.swing.JFormattedTextField();
-        txtcep = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtendereco = new javax.swing.JTextField();
-        txtnumero = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtbairro = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtcidade = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtcomplemento = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         cbuf = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        txtcnpj = new javax.swing.JFormattedTextField();
         btnbusca = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtpesquisa = new javax.swing.JTextField();
         btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelafornecedores = new javax.swing.JTable();
+        tabelaProdutos = new javax.swing.JTable();
         jButton8 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -107,7 +90,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro de Fornecedores");
+        jLabel1.setText("Cadastro de Produtos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +112,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         painel_dados.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Descrição:");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -160,7 +143,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Código:");
+        jLabel3.setText(" Código:");
 
         txtemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtemail.addActionListener(new java.awt.event.ActionListener() {
@@ -170,40 +153,10 @@ public class FrmFornecedores extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Email:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Telemovel:");
-
-        try {
-            txttelemovel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(+###)-#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txttelemovel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Telefone(fixo):");
-
-        try {
-            txttelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(+###)-#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txttelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        try {
-            txtcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##### - ###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtcep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("CEP:");
+        jLabel5.setText("Preço:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setText("Endereço:");
+        jLabel8.setText("Qtd. Estoque");
 
         txtendereco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtendereco.addActionListener(new java.awt.event.ActionListener() {
@@ -212,61 +165,10 @@ public class FrmFornecedores extends javax.swing.JFrame {
             }
         });
 
-        txtnumero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnumeroActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setText("Nº:");
-
-        txtbairro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtbairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbairroActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setText("Bairro:");
-
-        txtcidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtcidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcidadeActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setText("Cidade");
-
-        txtcomplemento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtcomplemento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcomplementoActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setText("UEF:");
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setText("Complimento:");
+        jLabel12.setText("Fornecedores:");
 
         cbuf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LB\t", "PT", "CB" }));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("CNPJ:");
-
-        try {
-            txtcnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtcnpj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnbusca.setText("Pesquisar");
         btnbusca.addActionListener(new java.awt.event.ActionListener() {
@@ -280,67 +182,28 @@ public class FrmFornecedores extends javax.swing.JFrame {
         painel_dadosLayout.setHorizontalGroup(
             painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_dadosLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painel_dadosLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painel_dadosLayout.createSequentialGroup()
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(painel_dadosLayout.createSequentialGroup()
-                                        .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(txtcidade, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(painel_dadosLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                                .addGap(254, 254, 254)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txttelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(painel_dadosLayout.createSequentialGroup()
-                                        .addGap(52, 52, 52)
-                                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1043, 1043, 1043))
@@ -363,37 +226,17 @@ public class FrmFornecedores extends javax.swing.JFrame {
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(txttelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
                             .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel8))
+                        .addGap(29, 29, 29)
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(txtcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)))
+                            .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Dados fornecedores", painel_dados);
+        jTabbedPane1.addTab("Dados produtos", painel_dados);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -415,11 +258,6 @@ public class FrmFornecedores extends javax.swing.JFrame {
                 txtpesquisaActionPerformed(evt);
             }
         });
-        txtpesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpesquisaKeyPressed(evt);
-            }
-        });
 
         btnpesquisar.setText("Pesquisar");
         btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -428,23 +266,23 @@ public class FrmFornecedores extends javax.swing.JFrame {
             }
         });
 
-        tabelafornecedores.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código:", "Nome:", "CNPJ:", "E-mail:", "Telefone:", "Telemovel:", "Cep:", "Endereço:", "Nº:", "Comp:", "Bairro", "Cidade:", "UF:"
+                "Código:", "Descrição:", "Preço:", "Qtd. Estoque", "Fornecedore:"
             }
         ));
-        tabelafornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelafornecedoresMouseClicked(evt);
+                tabelaProdutosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelafornecedores);
+        jScrollPane1.setViewportView(tabelaProdutos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -476,7 +314,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Consulta de Fornecedores", jPanel3);
+        jTabbedPane1.addTab("Consulta de produtos", jPanel3);
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton8.setText("EDITAR");
@@ -571,22 +409,6 @@ public class FrmFornecedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtenderecoActionPerformed
 
-    private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnumeroActionPerformed
-
-    private void txtbairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtbairroActionPerformed
-
-    private void txtcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcidadeActionPerformed
-
-    private void txtcomplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcomplementoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcomplementoActionPerformed
-
     private void txtpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpesquisaActionPerformed
@@ -594,9 +416,10 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // btn salvar no banco de dado        
 
-        Fornecedores obj = new Fornecedores();
+        Clientes obj = new Clientes();
         obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
-        obj.setCnpj(txtcnpj.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
         obj.setTelefone(txttelefone.getText());
         obj.setTelemovel(txttelemovel.getText());
@@ -610,8 +433,8 @@ public class FrmFornecedores extends javax.swing.JFrame {
         obj.setCidade(txtcidade.getText());
         obj.setUf(cbuf.getSelectedItem().toString());
 
-        FornecedorDAO dao = new FornecedorDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
-        dao.cadastrarFornecedores(obj);
+        ClienteDAO dao = new ClienteDAO(); // este é o objeto da camada DAO para cadastrar esses obj no banco de dados 
+        dao.cadastrarCliente(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
 
@@ -623,48 +446,52 @@ public class FrmFornecedores extends javax.swing.JFrame {
         listar();
     }//GEN-LAST:event_jPanel3AncestorAdded
 
-    private void tabelafornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelafornecedoresMouseClicked
+    private void tabelaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutosMouseClicked
 
         // pegue os comandos
         jTabbedPane1.setSelectedIndex(0); // este comando passa os dados da pabela pa abo de cadastro para que possamos fazer edicao
 
-        txtcodigo.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 0).toString());
+        txtcodigo.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
         // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-        txtnome.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 1).toString());
-        txtcnpj.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 2).toString());
-        txtemail.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 3).toString());
-        txttelefone.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 4).toString());
-        txttelemovel.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 5).toString());
-        txtcep.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 6).toString());
-        txtendereco.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 7).toString());
-        txtnumero.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 8).toString());
-        txtcomplemento.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 9).toString());
-        txtbairro.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 10).toString());
-        txtcidade.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 11).toString());
-        cbuf.setSelectedItem(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 12).toString());
-    }//GEN-LAST:event_tabelafornecedoresMouseClicked
+        txtnome.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
+        txtemail.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
+        txttelefone.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 5).toString());
+        txttelemovel.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 6).toString());
+        txtcep.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 7).toString());
+        txtendereco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 8).toString());
+        txtnumero.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 9).toString());
+        txtcomplemento.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 10).toString());
+        txtbairro.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 11).toString());
+        txtcidade.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 12).toString());
+        cbuf.setSelectedItem(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 13).toString());
+    }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         // btn editar o banco de dado        
-        Fornecedores obj = new Fornecedores();
+        Clientes obj = new Clientes();
 
         obj.setNome(txtnome.getText()); // assim temos o obj clientes da classe com seguintes setters
-        obj.setCnpj(txtcnpj.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
         obj.setTelefone(txttelefone.getText());
         obj.setTelemovel(txttelemovel.getText());
+        obj.setCep(txtcep.getText());
         obj.setCep(txtcep.getText());
         obj.setEndereco(txtendereco.getText());
         obj.setNumero(Integer.parseInt(txtnumero.getText()));
         obj.setComplemento(txtcomplemento.getText());
         obj.setBairro(txtbairro.getText());
         obj.setCidade(txtcidade.getText());
+        obj.setCidade(txtcidade.getText());
         obj.setUf(cbuf.getSelectedItem().toString());
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-        FornecedorDAO dao = new FornecedorDAO();
-        dao.alterarFornecedores(obj);
+        ClienteDAO dao = new ClienteDAO();
+        dao.alterarCliente(obj);
 
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
@@ -673,29 +500,30 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
         // excluir
-        Fornecedores obj = new Fornecedores();
+        Clientes obj = new Clientes();
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-        FornecedorDAO dao = new FornecedorDAO();
-        dao.excluirFonecedores(obj);
+        ClienteDAO dao = new ClienteDAO();
+        dao.excluirCliente(obj);
         //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
         new Utilitarios().LimparTela(painel_dados);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
 
-        // botao de pesquisar fornecedores por nome 
+        // botao de pesquisar cliente po nome 
         String nome = "%" + txtpesquisa.getText() + "%";
-        FornecedorDAO dao = new FornecedorDAO();
-        List<Fornecedores> lista = dao.buscaFornecedoresPorNome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
+        ClienteDAO dao = new ClienteDAO();
+        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
         dados.setNumRows(0);
 
-        for (Fornecedores c : lista) {
+        for (Clientes c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getCnpj(),
+                c.getRg(),
+                c.getCpf(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getTelemovel(),
@@ -719,19 +547,19 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
 
-        // botao busca fornecedores pelo nome
+        // botao busca cliente pelo nome
         
             String nome = txtnome.getText();
-            Fornecedores obj = new Fornecedores();
-           FornecedorDAO dao = new FornecedorDAO();
+            Clientes obj = new Clientes();
+            ClienteDAO dao = new ClienteDAO();
             obj = dao.consultaPorNome(nome);
             if(obj.getNome() !=null){
             // exibir dados do obj nos campos de textos
             txtcodigo.setText(String.valueOf(obj.getId()));
             // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
             txtnome.setText(obj.getNome());
-            
-            txtcnpj.setText(obj.getCnpj());
+            txtrg.setText(obj.getRg());
+            txtcpf.setText(obj.getCpf());
             txtemail.setText(obj.getEmail());
             txttelefone.setText(obj.getTelefone());
             txttelemovel.setText(obj.getTelemovel());
@@ -744,42 +572,11 @@ public class FrmFornecedores extends javax.swing.JFrame {
             cbuf.setSelectedItem(obj.getUf());
             }
             else {
-                JOptionPane.showMessageDialog(null,"forncedor nao encontrado!!");
+                JOptionPane.showMessageDialog(null,"cliente nao encontrado!!");
             }
 
         
     }//GEN-LAST:event_btnbuscaActionPerformed
-
-    private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
-
-// botao de pesquisar fornecedores por nome 
-        String nome = "%" + txtpesquisa.getText() + "%";
-        FornecedorDAO dao = new FornecedorDAO();
-        List<Fornecedores> lista = dao.buscaFornecedoresPorNome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
-        dados.setNumRows(0);
-
-        for (Fornecedores c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getCnpj(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getTelemovel(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
-            });
-        }
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpesquisaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -798,13 +595,13 @@ public class FrmFornecedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmFornecedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmproduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmFornecedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmproduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmFornecedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmproduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmFornecedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmproduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -812,7 +609,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmFornecedores().setVisible(true);
+                new Frmproduto().setVisible(true);
             }
         });
     }
@@ -826,39 +623,23 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel painel_dados;
-    private javax.swing.JTable tabelafornecedores;
-    private javax.swing.JTextField txtbairro;
-    private javax.swing.JFormattedTextField txtcep;
-    private javax.swing.JTextField txtcidade;
-    private javax.swing.JFormattedTextField txtcnpj;
+    private javax.swing.JTable tabelaProdutos;
     private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtcomplemento;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtendereco;
     private javax.swing.JTextField txtnome;
-    private javax.swing.JTextField txtnumero;
     private javax.swing.JTextField txtpesquisa;
-    private javax.swing.JFormattedTextField txttelefone;
-    private javax.swing.JFormattedTextField txttelemovel;
     // End of variables declaration//GEN-END:variables
 }
