@@ -173,6 +173,11 @@ public class Frmproduto extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        cbfornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbfornecedoresMouseClicked(evt);
+            }
+        });
 
         btnbusca.setText("Pesquisar");
         btnbusca.addActionListener(new java.awt.event.ActionListener() {
@@ -536,26 +541,26 @@ public class Frmproduto extends javax.swing.JFrame {
 
         // botao busca cliente pelo nome
         String nome = txtdescricao.getText();
-        Clientes obj = new Clientes();
-        ClienteDAO dao = new ClienteDAO();
+        Produtos obj = new Produtos();
+       ProdutoDAO dao = new ProdutoDAO();
         obj = dao.consultaPorNome(nome);
-        if (obj.getNome() != null) {
+        
+        cbfornecedores.removeAll();
+        
+        if (obj.getDescricao()!= null) {
             // exibir dados do obj nos campos de textos
             txtcodigo.setText(String.valueOf(obj.getId()));
             // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-            txtdescricao.setText(obj.getNome());
-            txtrg.setText(obj.getRg());
-            txtcpf.setText(obj.getCpf());
-            txtpreco.setText(obj.getEmail());
-            txttelefone.setText(obj.getTelefone());
-            txttelemovel.setText(obj.getTelemovel());
-            txtcep.setText(obj.getCep());
-            txtqtd_estoque.setText(obj.getEndereco());
-            txtnumero.setText(String.valueOf(obj.getNumero()));
-            txtcomplemento.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbfornecedores.setSelectedItem(obj.getUf());
+            txtdescricao.setText(obj.getDescricao());                        
+            txtpreco.setText(String.valueOf(obj.getPreco()));
+            txtqtd_estoque.setText(String.valueOf(obj.getQtd_estoque()));
+            
+             Fornecedores f = new Fornecedores();
+             FornecedorDAO fdao = new FornecedorDAO();
+             
+             f = fdao.consultaPorNome(obj.getFornecedor().getNome());
+              cbfornecedores.getModel().setSelectedItem(nome);
+            
         } else {
             JOptionPane.showMessageDialog(null, "cliente nao encontrado!!");
         }
@@ -596,6 +601,19 @@ public class Frmproduto extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txtpesquisaKeyPressed
+
+    private void cbfornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfornecedoresMouseClicked
+
+       FornecedorDAO dao = new FornecedorDAO();
+       List<Fornecedores> listarfornecedores = dao.listaFornecedores();
+       cbfornecedores.removeAllItems();
+       
+       for (Fornecedores f: listarfornecedores){
+           cbfornecedores.addItem(f);
+       }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbfornecedoresMouseClicked
 
     /**
      * @param args the command line arguments

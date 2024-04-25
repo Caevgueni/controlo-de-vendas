@@ -179,7 +179,47 @@ public class ProdutoDAO {
             
         }
         
-    } 
-      
-    
+      }
+    // buscar produto por nome
+         //public  Produtos buscarProdutosPorNome(String nome){
+        public Produtos consultaPorNome(String nome){
+        try {
+           
+            String sql = "select p.descricao, p.id, p.preco, p.qtd_estoque, f.nome from  tb_produtos as p "
+                    + "inner join tb_fornecedores as f on (p.for_id = f.id) where p.descricao= ? ";
+            
+           PreparedStatement stmt = con.prepareStatement(sql);
+           stmt.setString(1, nome);
+           ResultSet rs = stmt.executeQuery();
+           Produtos obj = new Produtos();
+                Fornecedores f = new Fornecedores();
+           
+            while (rs.next()) { // equndo ele precurer os registe que ele encpntro rs ele vai criar um objeto do tipo cliente vamos capturar e passar para objetos em baixo
+
+                
+
+                obj.setId(rs.getInt("p.id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setDescricao(rs.getString("p.descricao"));
+                obj.setPreco(rs.getDouble("p.preco"));
+                obj.setQtd_estoque(rs.getInt("p.qtd_estoque"));
+               
+                f.setNome(rs.getString(("f.nome")));
+                
+                obj.setFornecedor(f);
+             
+            }
+            return obj; 
+
+            
+        } catch (Exception erro) {
+            
+            JOptionPane.showMessageDialog(null,"erro"+ erro);
+            
+            return null;
+            
+        }
+        
+      }  
 }
+    
+
