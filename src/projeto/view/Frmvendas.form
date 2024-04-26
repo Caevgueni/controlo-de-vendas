@@ -29,9 +29,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton6" min="-2" pref="144" max="-2" attributes="0"/>
+              <Component id="btnpagamento" min="-2" pref="144" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton8" min="-2" pref="142" max="-2" attributes="0"/>
+              <Component id="btncancelarvenda" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -73,8 +73,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton6" max="32767" attributes="0"/>
-                  <Component id="jButton8" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnpagamento" max="32767" attributes="0"/>
+                  <Component id="btncancelarvenda" min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -126,7 +126,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="btncancelarvenda">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -134,10 +134,10 @@
         <Property name="text" type="java.lang.String" value="CANCELAR VENDA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncancelarvendaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="btnpagamento">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -145,7 +145,7 @@
         <Property name="text" type="java.lang.String" value="PAGAMENTO"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnpagamentoActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -389,7 +389,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-                          <Component id="btnbusca3" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="btnadicionaritem" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel17" min="-2" pref="57" max="-2" attributes="0"/>
@@ -410,7 +410,7 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="label" min="-2" pref="47" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtnome9" min="-2" pref="142" max="-2" attributes="0"/>
+                          <Component id="txtqtd" min="-2" pref="142" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
@@ -443,10 +443,10 @@
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtpreco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtnome9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtqtd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnbusca3" pref="46" max="32767" attributes="0"/>
+                  <Component id="btnadicionaritem" pref="46" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -516,12 +516,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtprecoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnbusca3">
+        <Component class="javax.swing.JButton" name="btnadicionaritem">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar Item"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbusca3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnadicionaritemActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnbusca4">
@@ -532,14 +532,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbusca4ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtnome9">
+        <Component class="javax.swing.JTextField" name="txtqtd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnome9ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtqtdActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -558,7 +558,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" pref="245" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtnome8" min="-2" pref="243" max="-2" attributes="0"/>
+                  <Component id="txttotalvenda" min="-2" pref="243" max="-2" attributes="0"/>
                   <EmptySpace pref="69" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -568,7 +568,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel10" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="txtnome8" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="txttotalvenda" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
               </Group>
@@ -587,14 +587,14 @@
             <Property name="text" type="java.lang.String" value="TOTAL DA VENDA:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtnome8">
+        <Component class="javax.swing.JTextField" name="txttotalvenda">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="26" style="1"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnome8ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttotalvendaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

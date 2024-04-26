@@ -7,36 +7,22 @@ package projeto.view;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.dao.ClienteDAO;
-import projeto.dao.FornecedorDAO;
+
 import projeto.dao.ProdutoDAO;
 import projeto.model.Clientes;
-import projeto.model.Fornecedores;
+
 import projeto.model.Produtos;
-import projeto.model.Utilitarios;
+
 
 public class Frmvendas extends javax.swing.JFrame {
-
-    public void listar() {
-        ProdutoDAO dao = new ProdutoDAO();
-        List<Produtos> lista = dao.listarProdutos();
-        DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
-        dados.setNumRows(0);
-
-        for (Produtos c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getDescricao(),
-                c.getPreco(),
-                c.getQtd_estoque(),
-                c.getFornecedor().getNome()
-            });
-        }
-
-    }
+      
+    double total, preco, subtotal;
+    int qtd;
+    
+    DefaultTableModel carrinho;
+    
 
     /**
      * Creates new form Frmcliente
@@ -56,8 +42,8 @@ public class Frmvendas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btncancelarvenda = new javax.swing.JButton();
+        btnpagamento = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaitms = new javax.swing.JTable();
@@ -77,12 +63,12 @@ public class Frmvendas extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtpreco = new javax.swing.JTextField();
-        btnbusca3 = new javax.swing.JButton();
+        btnadicionaritem = new javax.swing.JButton();
         btnbusca4 = new javax.swing.JButton();
-        txtnome9 = new javax.swing.JTextField();
+        txtqtd = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        txtnome8 = new javax.swing.JTextField();
+        txttotalvenda = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Vendes");
@@ -116,19 +102,19 @@ public class Frmvendas extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton8.setText("CANCELAR VENDA");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btncancelarvenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btncancelarvenda.setText("CANCELAR VENDA");
+        btncancelarvenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btncancelarvendaActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setText("PAGAMENTO");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnpagamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnpagamento.setText("PAGAMENTO");
+        btnpagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnpagamentoActionPerformed(evt);
             }
         });
 
@@ -290,10 +276,10 @@ public class Frmvendas extends javax.swing.JFrame {
             }
         });
 
-        btnbusca3.setText("Adicionar Item");
-        btnbusca3.addActionListener(new java.awt.event.ActionListener() {
+        btnadicionaritem.setText("Adicionar Item");
+        btnadicionaritem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbusca3ActionPerformed(evt);
+                btnadicionaritemActionPerformed(evt);
             }
         });
 
@@ -304,10 +290,10 @@ public class Frmvendas extends javax.swing.JFrame {
             }
         });
 
-        txtnome9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome9.addActionListener(new java.awt.event.ActionListener() {
+        txtqtd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtqtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome9ActionPerformed(evt);
+                txtqtdActionPerformed(evt);
             }
         });
 
@@ -320,7 +306,7 @@ public class Frmvendas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(btnbusca3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnadicionaritem, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -338,7 +324,7 @@ public class Frmvendas extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome9, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -362,9 +348,9 @@ public class Frmvendas extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(txtpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label)
-                    .addComponent(txtnome9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnbusca3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(btnadicionaritem, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
 
@@ -374,10 +360,10 @@ public class Frmvendas extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel10.setText("TOTAL DA VENDA:");
 
-        txtnome8.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtnome8.addActionListener(new java.awt.event.ActionListener() {
+        txttotalvenda.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txttotalvenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome8ActionPerformed(evt);
+                txttotalvendaActionPerformed(evt);
             }
         });
 
@@ -389,7 +375,7 @@ public class Frmvendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnome8, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txttotalvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -397,7 +383,7 @@ public class Frmvendas extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtnome8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttotalvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 1, Short.MAX_VALUE))
         );
 
@@ -407,9 +393,9 @@ public class Frmvendas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnpagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btncancelarvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(180, 180, 180))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -441,8 +427,8 @@ public class Frmvendas extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnpagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btncancelarvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -450,42 +436,14 @@ public class Frmvendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btncancelarvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarvendaActionPerformed
 
-        // btn editar o banco de dado        
-        Produtos obj = new Produtos();
+        
+    }//GEN-LAST:event_btncancelarvendaActionPerformed
 
-        obj.setId(Integer.parseInt(label.getText())); // assim temos o obj clientes da classe com seguintes setters
+    private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
 
-        obj.setDescricao(txtdescricao.getText());
-        obj.setPreco(Double.parseDouble(txtpreco.getText()));
-
-        obj.setQtd_estoque(Integer.parseInt(txtqtd_estoque.getText()));
-
-        // criar objeto de fornecedor
-        Fornecedores f = new Fornecedores();
-        f = (Fornecedores) cbfornecedores.getSelectedItem();
-        obj.setFornecedor(f);
-
-        ProdutoDAO dao = new ProdutoDAO();
-
-        dao.alterarProduto(obj);
-
-        //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
-        new Utilitarios().LimparTela(painel_dados);
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-        // excluir
-        Produtos obj = new Produtos();
-
-        obj.setId(Integer.parseInt(label.getText()));
-        ProdutoDAO dao = new ProdutoDAO();
-        dao.excluirProduto(obj);
-        //o metodo qui nos criamos la na casse utilitario no pacote model este comanda que vai limpar os dados depois de atualizar
-        new Utilitarios().LimparTela(painel_dados);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
         // TODO add your handling code here:
@@ -517,9 +475,35 @@ public class Frmvendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtprecoActionPerformed
 
-    private void btnbusca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbusca3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnbusca3ActionPerformed
+    private void btnadicionaritemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadicionaritemActionPerformed
+    
+        
+    //botao adicionar item
+    
+    qtd= Integer.parseInt(txtqtd.getText());
+    preco = Double.parseDouble(txtpreco.getText());
+    subtotal= qtd*preco;
+    total +=subtotal;
+    txttotalvenda.setText(String.valueOf(total));
+    
+    // adicionar o produto ao carrinho
+    carrinho = (DefaultTableModel)tabelaitms.getModel();
+    
+    carrinho.addRow( new Object[] {
+        txtcodigo.getText(),
+        txtdescricao.getText(),
+        txtqtd.getText(),
+        txtpreco.getText(),
+        txtpreco.getText(),
+        
+        subtotal
+        
+        
+        
+    });
+    
+    
+    }//GEN-LAST:event_btnadicionaritemActionPerformed
 
     private void btnbusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbusca4ActionPerformed
 // Busca produto por codigo
@@ -533,13 +517,13 @@ public class Frmvendas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnbusca4ActionPerformed
 
-    private void txtnome8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome8ActionPerformed
+    private void txttotalvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalvendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome8ActionPerformed
+    }//GEN-LAST:event_txttotalvendaActionPerformed
 
-    private void txtnome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome9ActionPerformed
+    private void txtqtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtqtdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome9ActionPerformed
+    }//GEN-LAST:event_txtqtdActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
@@ -616,11 +600,11 @@ public class Frmvendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbusca3;
+    private javax.swing.JButton btnadicionaritem;
     private javax.swing.JButton btnbusca4;
+    private javax.swing.JButton btncancelarvenda;
+    private javax.swing.JButton btnpagamento;
     private javax.swing.JButton btnpesquisarcliente;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel16;
@@ -642,8 +626,8 @@ public class Frmvendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtdataactual;
     private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtnome;
-    private javax.swing.JTextField txtnome8;
-    private javax.swing.JTextField txtnome9;
     private javax.swing.JTextField txtpreco;
+    private javax.swing.JTextField txtqtd;
+    private javax.swing.JTextField txttotalvenda;
     // End of variables declaration//GEN-END:variables
 }
