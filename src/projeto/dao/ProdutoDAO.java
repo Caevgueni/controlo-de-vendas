@@ -219,6 +219,44 @@ public class ProdutoDAO {
             
         }
         
+      } 
+        
+        // buscar produto por codigo de barra
+         //public  Produtos buscarProdutosPorNome(String nome){
+        public Produtos consultaPorCosdigoBarra(int id){
+        try {
+           
+            String sql = "select * from  tb_produtos  where id= ? ";
+            
+           PreparedStatement stmt = con.prepareStatement(sql);
+           stmt.setInt(1, id);
+           ResultSet rs = stmt.executeQuery();
+           Produtos obj = new Produtos();
+                Fornecedores f = new Fornecedores();
+           
+                if (rs.next()) { // equndo ele precurer os registe que ele encpntro rs ele vai criar um objeto do tipo cliente vamos capturar e passar para objetos em baixo
+
+                
+
+                obj.setId(rs.getInt("id")); // estou fala para ele pegar o que ele encontrar na coluna id que é do tipo int e armazenar dentro do meu objeto no atrebuto setId 
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setPreco(rs.getDouble("preco"));
+                obj.setQtd_estoque(rs.getInt("qtd_estoque"));
+               
+              
+             
+            }
+            return obj; 
+
+            
+        } catch (Exception erro) {
+            
+            JOptionPane.showMessageDialog(null,"erro"+ erro);
+            
+            return null;
+            
+        }
+        
       }  
 }
     

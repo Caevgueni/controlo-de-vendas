@@ -4,6 +4,7 @@
  */
 package projeto.view;
 
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -169,6 +170,11 @@ public class Frmvendas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtcpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcpfKeyPressed(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("CPF");
@@ -228,12 +234,13 @@ public class Frmvendas extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(txtdataactual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtdataactual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -265,6 +272,11 @@ public class Frmvendas extends javax.swing.JFrame {
         txtcodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcodigoActionPerformed(evt);
+            }
+        });
+        txtcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcodigoKeyPressed(evt);
             }
         });
 
@@ -406,7 +418,7 @@ public class Frmvendas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 496, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -485,33 +497,11 @@ public class Frmvendas extends javax.swing.JFrame {
 
     private void btnpesquisarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarclienteActionPerformed
 
-        // botao busca fornecedores pelo nome
-
-        String nome = txtnome.getText();
-        Fornecedores obj = new Fornecedores();
-        FornecedorDAO dao = new FornecedorDAO();
-        obj = dao.consultaPorNome(nome);
-        if(obj.getNome() !=null){
-            // exibir dados do obj nos campos de textos
-            label.setText(String.valueOf(obj.getId()));
-            // por ncampo txtcodigo os valores que viera da talebaClientes da culuna "0"  linha selccionada "getSelectedRow()" e fça conversao para string
-            txtnome.setText(obj.getNome());
-
-            txtcnpj.setText(obj.getCnpj());
-            txtemail.setText(obj.getEmail());
-            txttelefone.setText(obj.getTelefone());
-            txttelemovel.setText(obj.getTelemovel());
-            txtcep.setText(obj.getCep());
-            txtendereco.setText(obj.getEndereco());
-            txtnumero.setText(String.valueOf(obj.getNumero()));
-            txtcomplemento.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
-        }
-        else {
-            JOptionPane.showMessageDialog(null,"forncedor nao encontrado!!");
-        }
+        // ao clicar botao peaquisar
+        Clientes obj = new Clientes();
+        ClienteDAO dao = new ClienteDAO();
+        obj = dao.consultaPorCpf(txtcpf.getText());
+        txtnome.setText(obj.getNome());
 
     }//GEN-LAST:event_btnpesquisarclienteActionPerformed
 
@@ -532,7 +522,15 @@ public class Frmvendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbusca3ActionPerformed
 
     private void btnbusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbusca4ActionPerformed
-        // TODO add your handling code here:
+// Busca produto por codigo
+
+        Produtos obj = new Produtos();
+        ProdutoDAO dao = new ProdutoDAO();
+
+        obj = dao.consultaPorCosdigoBarra(Integer.parseInt(txtcodigo.getText()));
+        txtdescricao.setText(obj.getDescricao());
+        txtpreco.setText(String.valueOf(obj.getPreco()));
+
     }//GEN-LAST:event_btnbusca4ActionPerformed
 
     private void txtnome8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome8ActionPerformed
@@ -545,15 +543,39 @@ public class Frmvendas extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
+        //captura da data actual do windows
+        Date agora = new Date();
 
-       //captura da data actual do windows
-       
-       Date agora = new Date();
-       
-        SimpleDateFormat dataPr= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dataPr = new SimpleDateFormat("dd/MM/yyyy");
         String dataformatada = dataPr.format(agora);
         txtdataactual.setText(dataformatada);
     }//GEN-LAST:event_formWindowActivated
+
+    private void txtcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyPressed
+
+        // au clicar peaquisar busca cliente por cpf
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Clientes obj = new Clientes();
+            ClienteDAO dao = new ClienteDAO();
+            obj = dao.consultaPorCpf(txtcpf.getText());
+            txtnome.setText(obj.getNome());
+        }
+
+    }//GEN-LAST:event_txtcpfKeyPressed
+
+    private void txtcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoKeyPressed
+
+        // Busca produto por codigo
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Produtos obj = new Produtos();
+            ProdutoDAO dao = new ProdutoDAO();
+
+            obj = dao.consultaPorCosdigoBarra(Integer.parseInt(txtcodigo.getText()));
+            txtdescricao.setText(obj.getDescricao());
+            txtpreco.setText(String.valueOf(obj.getPreco()));
+        }
+
+    }//GEN-LAST:event_txtcodigoKeyPressed
 
     /**
      * @param args the command line arguments
