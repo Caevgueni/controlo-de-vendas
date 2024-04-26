@@ -29,6 +29,8 @@ public class Frmvendas extends javax.swing.JFrame {
      */
     public Frmvendas() {
         initComponents();
+        
+        
     }
 
     /**
@@ -70,7 +72,7 @@ public class Frmvendas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txttotalvenda = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de Vendes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -443,6 +445,12 @@ public class Frmvendas extends javax.swing.JFrame {
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
 
+        //Botao pagamento
+        
+        Frmpagamento telap= new Frmpagamento();
+        telap.txttotal.setText(String.valueOf(total));
+        telap.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed

@@ -15,6 +15,9 @@ public class Frmpagamento extends javax.swing.JFrame {
      */
     public Frmpagamento() {
         initComponents();
+        txtcartao.setText("0");
+        txtdinheiro.setText("0");
+        txtcheque.setText("0");
     }
 
     /**
@@ -28,17 +31,17 @@ public class Frmpagamento extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtdataactual = new javax.swing.JTextField();
+        txtdinheiro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtdataactual1 = new javax.swing.JTextField();
+        txtcartao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtdataactual2 = new javax.swing.JTextField();
+        txtcheque = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtdataactual3 = new javax.swing.JTextField();
+        txttroco = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtdataactual4 = new javax.swing.JTextField();
+        txttotal = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnfinalizarvenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de pagamento");
@@ -66,60 +69,65 @@ public class Frmpagamento extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        txtdataactual.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtdataactual.addActionListener(new java.awt.event.ActionListener() {
+        txtdinheiro.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txtdinheiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataactualActionPerformed(evt);
+                txtdinheiroActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel5.setText("DINHEIRO:");
 
-        txtdataactual1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtdataactual1.addActionListener(new java.awt.event.ActionListener() {
+        txtcartao.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txtcartao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataactual1ActionPerformed(evt);
+                txtcartaoActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel6.setText("CARTAO:");
 
-        txtdataactual2.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtdataactual2.addActionListener(new java.awt.event.ActionListener() {
+        txtcheque.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txtcheque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataactual2ActionPerformed(evt);
+                txtchequeActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel7.setText("CHEQUE:");
 
-        txtdataactual3.setEditable(false);
-        txtdataactual3.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtdataactual3.addActionListener(new java.awt.event.ActionListener() {
+        txttroco.setEditable(false);
+        txttroco.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txttroco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataactual3ActionPerformed(evt);
+                txttrocoActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel8.setText("TROCO:");
 
-        txtdataactual4.setEditable(false);
-        txtdataactual4.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        txtdataactual4.addActionListener(new java.awt.event.ActionListener() {
+        txttotal.setEditable(false);
+        txttotal.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txttotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataactual4ActionPerformed(evt);
+                txttotalActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel9.setText("TOTAL:");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jButton1.setText("FINALIZAR VENDA");
+        btnfinalizarvenda.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
+        btnfinalizarvenda.setText("FINALIZAR VENDA");
+        btnfinalizarvenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfinalizarvendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,24 +146,24 @@ public class Frmpagamento extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdataactual3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdataactual2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttroco, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcheque, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtdataactual1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtcartao, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtdataactual, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtdinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(22, 22, 22)
-                                .addComponent(txtdataactual4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnfinalizarvenda)
                         .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
@@ -164,26 +172,26 @@ public class Frmpagamento extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdataactual, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdataactual1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcartao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtdataactual2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcheque, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtdataactual3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttroco, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtdataactual4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnfinalizarvenda)
                 .addGap(20, 20, 20))
         );
 
@@ -191,25 +199,46 @@ public class Frmpagamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtdataactualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataactualActionPerformed
+    private void txtdinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdinheiroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataactualActionPerformed
+    }//GEN-LAST:event_txtdinheiroActionPerformed
 
-    private void txtdataactual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataactual1ActionPerformed
+    private void txtcartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcartaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataactual1ActionPerformed
+    }//GEN-LAST:event_txtcartaoActionPerformed
 
-    private void txtdataactual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataactual2ActionPerformed
+    private void txtchequeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtchequeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataactual2ActionPerformed
+    }//GEN-LAST:event_txtchequeActionPerformed
 
-    private void txtdataactual3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataactual3ActionPerformed
+    private void txttrocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttrocoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataactual3ActionPerformed
+    }//GEN-LAST:event_txttrocoActionPerformed
 
-    private void txtdataactual4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataactual4ActionPerformed
+    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataactual4ActionPerformed
+    }//GEN-LAST:event_txttotalActionPerformed
+
+    private void btnfinalizarvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinalizarvendaActionPerformed
+        //botao finalizar venda:
+        
+        double pdinheiro, pcartao, pcheque, troco, totalvenda, totalgago;
+        
+        pcartao= Double.parseDouble(txtcartao.getText());
+        pcheque= Double.parseDouble(txtcheque.getText());
+        pdinheiro=  Double.parseDouble(txtdinheiro.getText());
+        
+        
+        totalvenda=  Double.parseDouble(txttotal.getText());
+        
+        // calcular  total e o troco
+        
+        totalgago = pcartao + pcheque+pdinheiro;
+        
+        troco = totalgago - totalvenda;
+        txttroco.setText(String.valueOf(troco));
+        
+    }//GEN-LAST:event_btnfinalizarvendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +276,7 @@ public class Frmpagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnfinalizarvenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -255,10 +284,10 @@ public class Frmpagamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtdataactual;
-    private javax.swing.JTextField txtdataactual1;
-    private javax.swing.JTextField txtdataactual2;
-    private javax.swing.JTextField txtdataactual3;
-    private javax.swing.JTextField txtdataactual4;
+    private javax.swing.JTextField txtcartao;
+    private javax.swing.JTextField txtcheque;
+    private javax.swing.JTextField txtdinheiro;
+    public javax.swing.JTextField txttotal;
+    private javax.swing.JTextField txttroco;
     // End of variables declaration//GEN-END:variables
 }
