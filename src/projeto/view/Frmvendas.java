@@ -17,6 +17,7 @@ import projeto.model.Produtos;
 
 
 public class Frmvendas extends javax.swing.JFrame {
+     Clientes obj = new Clientes();
       
     double total, preco, subtotal;
     int qtd;
@@ -449,6 +450,9 @@ public class Frmvendas extends javax.swing.JFrame {
         
         Frmpagamento telap= new Frmpagamento();
         telap.txttotal.setText(String.valueOf(total));
+        
+        telap.clientes=obj; // pegando o id do cliente iste é para taratar do registode pagamento --> vamos para btnfinalizarpagamnto
+        
         telap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnpagamentoActionPerformed
@@ -547,7 +551,7 @@ public class Frmvendas extends javax.swing.JFrame {
 
         // au clicar peaquisar busca cliente por cpf
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Clientes obj = new Clientes();
+           
             ClienteDAO dao = new ClienteDAO();
             obj = dao.consultaPorCpf(txtcpf.getText());
             txtnome.setText(obj.getNome());

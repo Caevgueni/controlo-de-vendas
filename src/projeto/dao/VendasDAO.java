@@ -1,13 +1,12 @@
 
 package projeto.dao;
 
-import com.mysql.cj.protocol.Resultset;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
-import projeto.model.Clientes;
-import projeto.model.Produtos;
+import java.sql.ResultSet; 
 import projeto.model.Vendas;
 
 
@@ -57,11 +56,20 @@ public class VendasDAO {
              try {
                  int idvenda = 0;
                  String sql= "select max(id) id from tb_vendas";
-                 PreparedStatement ps = con.prepareStatement(sql);
-                 Resultset rs = ps.executeQuery();
+                 
+                  PreparedStatement stmt = con.prepareStatement(sql);
+                  ResultSet rs = stmt.executeQuery();
+                  
+                  if(rs.next()){
+                      Vendas p= new Vendas();
+                      p.setId(rs.getInt("id"));
+                      idvenda=p.getId();
+                  }
+                  return idvenda;
                  
                  
              } catch (Exception e) {
+                 throw new RuntimeException(e);
              }
          }
     
