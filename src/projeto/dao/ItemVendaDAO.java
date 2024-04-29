@@ -37,7 +37,7 @@ public class ItemVendaDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Item registada  com sucesso");
+           
 
         } catch (Exception erro) {
 

@@ -39,7 +39,7 @@ public class VendasDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Venda registada  com sucesso");
+           
 
         } catch (Exception erro) {
 

@@ -6,8 +6,13 @@ package projeto.view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projeto.dao.ItemVendaDAO;
 import projeto.dao.VendasDAO;
 import projeto.model.Clientes;
+import projeto.model.IntemVenda;
+import projeto.model.Produtos;
 import projeto.model.Vendas;
 
 /**
@@ -17,7 +22,7 @@ import projeto.model.Vendas;
 public class Frmpagamento extends javax.swing.JFrame {
 
     Clientes clientes = new Clientes(); // isto é para ontencao do id do cliente para registo de venda ----> de sguida vamos para FrmVendas no metudo cpf 
-    
+     DefaultTableModel carrinp;
     /**
      * Creates new form Frmpagamento
      */
@@ -286,9 +291,28 @@ public class Frmpagamento extends javax.swing.JFrame {
         
         objv.setId(dao_v.retonaultimaVenda());
         
-        System.out.println("id da ultima venda" + objv.getId());
+        //System.out.println("id da ultima venda" + objv.getId());
         
+        // cadastrando os produtos na tabela itemvendas
+        for (int i=0; i<carrinp.getRowCount();i++){
+            
+            Produtos objp= new Produtos();
+            IntemVenda item= new IntemVenda();
+            item.setVenda(objv);
+            
+            
+            objp.setId(Integer.parseInt(carrinp.getValueAt(i,0).toString()));
+            item.setProduto(objp);
+            item.setQtd(Integer.parseInt(carrinp.getValueAt(i,2).toString()));
+            item.setSubtotal(Double.parseDouble(carrinp.getValueAt(i, 4).toString()));
+            
+            ItemVendaDAO daoitem= new ItemVendaDAO();
+            daoitem.cadastrarItem(item);
+        }
         
+        /******************************************************************/
+        
+         JOptionPane.showMessageDialog(null, "Venda registada  com sucesso");
         
     }//GEN-LAST:event_btnfinalizarvendaActionPerformed
 

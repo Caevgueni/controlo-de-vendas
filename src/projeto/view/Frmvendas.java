@@ -17,12 +17,14 @@ import projeto.model.Produtos;
 
 
 public class Frmvendas extends javax.swing.JFrame {
+    
      Clientes obj = new Clientes();
+     
       
     double total, preco, subtotal;
     int qtd;
     
-    DefaultTableModel carrinho;
+    DefaultTableModel carrinhov;
     
 
     /**
@@ -453,6 +455,9 @@ public class Frmvendas extends javax.swing.JFrame {
         
         telap.clientes=obj; // pegando o id do cliente iste é para taratar do registode pagamento --> vamos para btnfinalizarpagamnto
         
+        // o primeiro carrinho pertence a tela de pagamento e o segundo é da venda
+        telap.carrinp = carrinhov; // passamos os dados de um carrinhop para outro carinhov
+        
         telap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnpagamentoActionPerformed
@@ -499,9 +504,9 @@ public class Frmvendas extends javax.swing.JFrame {
     txttotalvenda.setText(String.valueOf(total));
     
     // adicionar o produto ao carrinho
-    carrinho = (DefaultTableModel)tabelaitms.getModel();
+    carrinhov = (DefaultTableModel)tabelaitms.getModel();
     
-    carrinho.addRow( new Object[] {
+    carrinhov.addRow( new Object[] {
         txtcodigo.getText(),
         txtdescricao.getText(),
         txtqtd.getText(),
