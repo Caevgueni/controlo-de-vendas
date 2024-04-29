@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet; 
+import java.sql.SQLException;
 
 
 import javax.swing.JOptionPane;
@@ -257,7 +258,47 @@ public class ProdutoDAO {
             
         }
         
-      }  
+      }
+   //metodo que baixa o estoque
+  public void baixaEstoque(int id, int qtd_nova){
+      try {
+          String sql = "updata td_produtos ser qtd_estoque =? where id=? ";
+          // 2 passo conectar com o banco de dados e organizar o comando sql
+          PreparedStatement stmt =con.prepareStatement(sql);
+          stmt.setInt(1, qtd_nova);
+          stmt.setInt(2, id);
+          
+          
+          stmt.execute();
+          stmt.close();
+          
+                 
+      } catch (Exception erro) {
+          JOptionPane.showMessageDialog(null," erro" + erro);
+      }
+  }
+  
+  // metodo que retorna o estoque actual
+  public int retornaEstoqueActual(int id){
+      try {
+          int qtd_estoque =0;
+          String sql= "SELECT qtd_stoque from td_produtos where id=?";
+          PreparedStatement stmt =con.prepareStatement(sql);
+          stmt.setInt(1, id);
+          
+          ResultSet rs = stmt.executeQuery();
+          if(rs.next()){
+            
+              qtd_estoque=(rs.getInt("qtd_estoque"));
+          }
+          return qtd_estoque;
+                  
+      } catch (SQLException e) {
+          throw new RuntimeException(e);
+          
+      }
+  }
+        
 }
     
 
