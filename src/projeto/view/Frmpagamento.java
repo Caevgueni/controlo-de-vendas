@@ -282,6 +282,12 @@ public class Frmpagamento extends javax.swing.JFrame {
         dao_v.cadastrarVenda(objv);
         
         
+        // retonando o id da ultima venda
+        
+        objv.setId(dao_v.retonaultimaVenda());
+        
+        System.out.println("id da ultima venda" + objv.getId());
+        
         
         
     }//GEN-LAST:event_btnfinalizarvendaActionPerformed
