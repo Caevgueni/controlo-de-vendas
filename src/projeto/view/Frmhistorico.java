@@ -4,6 +4,13 @@
  */
 package projeto.view;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import projeto.dao.VendasDAO;
+import projeto.model.Vendas;
+
 /**
  *
  * @author itais
@@ -35,7 +42,7 @@ public class Frmhistorico extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         btnconsultapordata = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelahistorico = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,7 +139,7 @@ public class Frmhistorico extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelahistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -140,7 +147,7 @@ public class Frmhistorico extends javax.swing.JFrame {
                 "Código", "Data da venda", "Cliente", "Total da venda"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelahistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,13 +180,7 @@ public class Frmhistorico extends javax.swing.JFrame {
 
     private void txtdatainicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdatainicialKeyPressed
 
-        // au clicar peaquisar busca cliente por cpf
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            ClienteDAO dao = new ClienteDAO();
-            obj = dao.consultaPorCpf(txtdatainicial.getText());
-            txtnome.setText(obj.getNome());
-        }
+        
     }//GEN-LAST:event_txtdatainicialKeyPressed
 
     private void txtdatafimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdatafimKeyPressed
@@ -187,7 +188,33 @@ public class Frmhistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdatafimKeyPressed
 
     private void btnconsultapordataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultapordataActionPerformed
-        // TODO add your handling code here:
+
+
+        // botao buscar venda por periudo
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        // receber datas
+        LocalDate data_inicio= LocalDate.parse(txtdatainicial.getText(), formato );
+        LocalDate data_fim= LocalDate.parse(txtdatafim.getText(), formato );
+        
+        VendasDAO dao = new VendasDAO();
+        List<Vendas> lista = dao.listarVendaporPeriodo(data_inicio, data_fim);
+         DefaultTableModel dados = (DefaultTableModel)tabelahistorico.getModel();
+         dados.setNumRows(0);
+         for(Vendas v: lista){
+             dados.addRow(new Object[]{
+                 
+             v.getId(),
+             v.getData_venda(),
+             v.getCliente().getNome(),
+             v.getTotal_veda(),
+             v.getObs()
+             
+                 
+             });
+             
+             
+         }
     }//GEN-LAST:event_btnconsultapordataActionPerformed
 
     /**
@@ -233,7 +260,7 @@ public class Frmhistorico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelahistorico;
     private javax.swing.JFormattedTextField txtdatafim;
     private javax.swing.JFormattedTextField txtdatainicial;
     // End of variables declaration//GEN-END:variables

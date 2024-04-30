@@ -89,14 +89,14 @@ public class VendasDAO {
                  List<Vendas> lista= new ArrayList<>();
                  
                  
-                 String sql= "select v.id, v.data_venda, c.nome, v.totalvenda, v.observacaoes from tb_vendas as v"
-                         + " inner join td_clientes as c on(v.clientes_id=c.id) where v.data_venda BETWEEN? AND?";
+                 String sql= "select v.id, v.data_venda, c.nome, v.total_venda, v.observacoes from tb_vendas as v "
+                         + " inner join tb_clientes as c on(v.cliente_id=c.id) where v.data_venda BETWEEN? AND?";
                  
                  PreparedStatement stmt= con.prepareStatement(sql);
                  
                  // informamos de onde vai vir esses dados
                  stmt.setString(1, data_inicio.toString());
-                 stmt.setString(1, data_fim.toString()); // o .toString() é para coverta as data para  
+                 stmt.setString(2, data_fim.toString()); // o .toString() é para coverta as data para  
                  
                  
                  ResultSet rs= stmt.executeQuery();
@@ -119,7 +119,8 @@ public class VendasDAO {
                  } return lista;
                  
              } catch (SQLException erro) {
-                 throw  new RuntimeException(erro);
+                 JOptionPane.showMessageDialog(null," erro" + erro);
+                 return null;
              }
              
          }
