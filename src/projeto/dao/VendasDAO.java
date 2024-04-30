@@ -2,11 +2,18 @@
 package projeto.dao;
 
 
+import com.sun.source.tree.TryTree;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import projeto.factory.jdbc.ConnectionFactory;
 import java.sql.ResultSet; 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import projeto.model.Clientes;
+import projeto.model.Produtos;
 import projeto.model.Vendas;
 
 
@@ -72,6 +79,51 @@ public class VendasDAO {
                  throw new RuntimeException(e);
              }
          }
+         
+         
+         //Filtatrar as vendas por datas
+         public List<Vendas> listarVendaporPeriodo(LocalDate data_inicio, LocalDate data_fim) {
+             
+             try {
+               //  1 passo crar lista
+                 List<Vendas> lista= new ArrayList<>();
+                 
+                 
+                 String sql= "select v.id, v.data_venda, c.nome, v.totalvenda, v.observacaoes from tb_vendas as v"
+                         + " inner join td_clientes as c on(v.clientes_id=c.id) where v.data_venda BETWEEN? AND?";
+                 
+                 PreparedStatement stmt= con.prepareStatement(sql);
+                 
+                 // informamos de onde vai vir esses dados
+                 stmt.setString(1, data_inicio.toString());
+                 stmt.setString(1, data_fim.toString()); // o .toString() é para coverta as data para  
+                 
+                 
+                 ResultSet rs= stmt.executeQuery();
+                 while (rs.next()){
+                     
+                     //criamos os dois objetos, porque como as tabelas estao relacionados vamos precisar do dados dad duas tabela 
+                     Vendas obj= new Vendas();
+                     Clientes c= new Clientes();
+                     obj.setId(rs.getInt("v.id"));
+                     obj.setData_venda(rs.getString("v.data_venda"));
+                     c.setNome(rs.getString("c.nome"));
+                     obj.setTotal_veda(rs.getDouble("v.total_venda"));
+                     obj.setObs(rs.getString("v.observacoes"));
+                     
+                     // agora vamos colocar "c.setNome(rs.getString("c.nome"));" dentra de lista 
+                    obj.setCliente(c);
+                    
+                    // adicioamos a lista
+                    lista.add(obj);
+                 } return lista;
+                 
+             } catch (SQLException erro) {
+                 throw  new RuntimeException(erro);
+             }
+             
+         }
+                
     
     
     
