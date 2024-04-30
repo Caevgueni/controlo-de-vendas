@@ -7,6 +7,7 @@ package projeto.view;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.dao.VendasDAO;
 import projeto.model.Vendas;
@@ -190,7 +191,8 @@ public class Frmhistorico extends javax.swing.JFrame {
     private void btnconsultapordataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultapordataActionPerformed
 
 
-        // botao buscar venda por periudo
+        try {
+             // botao buscar venda por periudo
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
         // receber datas
@@ -215,6 +217,10 @@ public class Frmhistorico extends javax.swing.JFrame {
              
              
          }
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null,"Digite duas datas com intervalos!");
+        }
     }//GEN-LAST:event_btnconsultapordataActionPerformed
 
     /**
