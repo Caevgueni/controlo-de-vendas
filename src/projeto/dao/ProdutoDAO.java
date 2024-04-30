@@ -262,7 +262,7 @@ public class ProdutoDAO {
    //metodo que baixa o estoque
   public void baixaEstoque(int id, int qtd_nova){
       try {
-          String sql = "updata td_produtos ser qtd_estoque =? where id=? ";
+          String sql = "update tb_produtos set qtd_estoque=? where id=?";
           // 2 passo conectar com o banco de dados e organizar o comando sql
           PreparedStatement stmt =con.prepareStatement(sql);
           stmt.setInt(1, qtd_nova);
@@ -282,7 +282,7 @@ public class ProdutoDAO {
   public int retornaEstoqueActual(int id){
       try {
           int qtd_estoque =0;
-          String sql= "SELECT qtd_stoque from td_produtos where id=?";
+          String sql= "SELECT qtd_estoque from tb_produtos where id=?";
           PreparedStatement stmt =con.prepareStatement(sql);
           stmt.setInt(1, id);
           

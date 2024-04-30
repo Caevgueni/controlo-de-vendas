@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.dao.ItemVendaDAO;
+import projeto.dao.ProdutoDAO;
 import projeto.dao.VendasDAO;
 import projeto.model.Clientes;
 import projeto.model.IntemVenda;
@@ -296,7 +297,12 @@ public class Frmpagamento extends javax.swing.JFrame {
         // cadastrando os produtos na tabela itemvendas
         for (int i=0; i<carrinp.getRowCount();i++){
             
-            Produtos objp= new Produtos();
+            int qtd_estoque, qtd_comprada, qtd_atualizada;// impelemntacao de baixa de estoque
+            Produtos objp = new Produtos();
+            ProdutoDAO  dao_produto= new ProdutoDAO(); // esta e para acessar o meto de baixar estoque
+           
+            
+           
             IntemVenda item= new IntemVenda();
             item.setVenda(objv);
             
@@ -306,8 +312,19 @@ public class Frmpagamento extends javax.swing.JFrame {
             item.setQtd(Integer.parseInt(carrinp.getValueAt(i,2).toString()));
             item.setSubtotal(Double.parseDouble(carrinp.getValueAt(i, 4).toString()));
             
+                    
+            // baixa no estoque
+            qtd_estoque = dao_produto.retornaEstoqueActual(objp.getId());
+            qtd_comprada = Integer.parseInt(carrinp.getValueAt(i,2).toString());
+            qtd_atualizada =qtd_estoque-qtd_comprada;
+            
+            dao_produto.baixaEstoque(objp.getId(),qtd_atualizada);
+            
+            
             ItemVendaDAO daoitem= new ItemVendaDAO();
             daoitem.cadastrarItem(item);
+            
+    
         }
         
         /******************************************************************/
