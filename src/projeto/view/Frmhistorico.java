@@ -45,7 +45,7 @@ public class Frmhistorico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelahistorico = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
@@ -130,13 +130,13 @@ public class Frmhistorico extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtdatafim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17)
                         .addComponent(txtdatainicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnconsultapordata)))
+                        .addComponent(btnconsultapordata))
+                    .addComponent(jLabel16))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -145,9 +145,14 @@ public class Frmhistorico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Data da venda", "Cliente", "Total da venda"
+                "Código", "Data da venda", "Cliente", "Total da venda", "Obs"
             }
         ));
+        tabelahistorico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelahistoricoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelahistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,6 +182,7 @@ public class Frmhistorico extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtdatainicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdatainicialKeyPressed
@@ -222,6 +228,28 @@ public class Frmhistorico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Digite duas datas com intervalos!");
         }
     }//GEN-LAST:event_btnconsultapordataActionPerformed
+
+    private void tabelahistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelahistoricoMouseClicked
+
+        
+        try {
+             FrmDetalhesDavenda  tela = new FrmDetalhesDavenda();
+        
+        tela.txtcliente.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 2).toString());
+       
+        tela.txttotalvenda.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 3).toString());
+         
+        tela.txtdata.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 1).toString());
+        /*
+        tela.observacao.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 4).toString());
+        */
+        tela.setVisible(true);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null,"erro"+erro);
+        }
+        
+    }//GEN-LAST:event_tabelahistoricoMouseClicked
 
     /**
      * @param args the command line arguments
