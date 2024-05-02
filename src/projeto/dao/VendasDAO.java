@@ -56,7 +56,7 @@ public class VendasDAO {
 
     }
          
-         // metodo retorna ultima venda
+         // metodo retorna o id da ultima venda
          
          public int retonaultimaVenda(){
              
@@ -123,6 +123,30 @@ public class VendasDAO {
                  return null;
              }
              
+         }
+         
+          // metodo que calcula total venda por data
+         
+         public double retonarTotalVendaPorData(LocalDate data_venda){
+             
+             
+             try {
+                 double totalvenda = 0;
+                 String sql= "select sum(total_venda) as total from tb_vendas where data_venda=?";
+                 
+                  PreparedStatement stmt = con.prepareStatement(sql);
+                  stmt.setString(1, data_venda.toString());
+                  ResultSet rs = stmt.executeQuery();
+                  
+                  if(rs.next()){
+                      totalvenda = rs.getDouble("total");
+                  }
+                  return totalvenda;
+                 
+                 
+             } catch (Exception e) {
+                 throw new RuntimeException(e);
+             }
          }
                 
     
