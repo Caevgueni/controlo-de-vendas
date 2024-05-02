@@ -9,7 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projeto.dao.ItemVendaDAO;
 import projeto.dao.VendasDAO;
+import projeto.model.IntemVenda;
 import projeto.model.Vendas;
 
 /**
@@ -240,9 +242,29 @@ public class Frmhistorico extends javax.swing.JFrame {
         tela.txttotalvenda.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 3).toString());
          
         tela.txtdata.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 1).toString());
-        /*
+        
         tela.observacao.setText(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(), 4).toString());
-        */
+        
+        // dados de itens por compra
+        int venda_id = Integer.parseInt(tabelahistorico.getValueAt(tabelahistorico.getSelectedRow(),0).toString());
+        
+            IntemVenda item = new IntemVenda();
+            ItemVendaDAO dao_item= new ItemVendaDAO();
+        List<IntemVenda> listaitens = dao_item.listarItensPorvenda(venda_id);
+        
+        DefaultTableModel dados = (DefaultTableModel)tela.tabeladetalhesvenda.getModel();
+        dados.setNumRows(0);
+
+        for (IntemVenda c : listaitens) {
+            dados.addRow(new Object[]{
+                c.getProduto().getDescricao(),
+                c.getQtd(),
+                c.getProduto().getPreco(),
+                c.getSubtotal(),
+            });
+        }
+        
+        
         tela.setVisible(true);
             
         } catch (Exception erro) {

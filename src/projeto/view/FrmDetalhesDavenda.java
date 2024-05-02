@@ -42,7 +42,7 @@ public class FrmDetalhesDavenda extends javax.swing.JFrame {
         observacao = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabenadetalhes = new javax.swing.JTable();
+        tabeladetalhesvenda = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,15 +179,15 @@ public class FrmDetalhesDavenda extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        tabenadetalhes.setModel(new javax.swing.table.DefaultTableModel(
+        tabeladetalhesvenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Produto", "Qtd Comprada", "Valor", "Subtotal"
+                "Produto", "Qtd Comprada", "Valor", "Subtotal"
             }
         ));
-        jScrollPane3.setViewportView(tabenadetalhes);
+        jScrollPane3.setViewportView(tabeladetalhesvenda);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -296,7 +296,7 @@ public class FrmDetalhesDavenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     public javax.swing.JTextArea observacao;
-    private javax.swing.JTable tabenadetalhes;
+    public javax.swing.JTable tabeladetalhesvenda;
     public javax.swing.JTextField txtcliente;
     public javax.swing.JFormattedTextField txtdata;
     public javax.swing.JTextField txttotalvenda;

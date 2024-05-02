@@ -499,7 +499,7 @@ public class Frmvendas extends javax.swing.JFrame {
     
     qtd= Integer.parseInt(txtqtd.getText());
     preco = Double.parseDouble(txtpreco.getText());
-    subtotal= qtd*preco;
+    subtotal = qtd*preco;
     total +=subtotal;
     txttotalvenda.setText(String.valueOf(total));
     
@@ -511,7 +511,7 @@ public class Frmvendas extends javax.swing.JFrame {
         txtdescricao.getText(),
         txtqtd.getText(),
         txtpreco.getText(),
-        txtpreco.getText(),
+        //txttotalvenda.getText(),
         
         subtotal
         

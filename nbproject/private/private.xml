@@ -3,29 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Clientes.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Produtos.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/FuncionarioDAO.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Funcionario.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmcliente.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/FornecedorDAO.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Utilitarios.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/VendasDAO.java</file>
+            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/ItemVendaDAO.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmvendas.java</file>
             <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmhistorico.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/factory/jdbc/TestConexao.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/ProdutoDAO.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Fornecedores.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/factory/jdbc/ConnectionFactory.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmpagamento.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/dao/VendasDAO.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmmenu.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/IntemVenda.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/FrmFornecedores.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmproduto.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/model/Vendas.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/Frmfuncionario.java</file>
-            <file>file:/C:/Users/itais/Documents/NetBeansProjects/Projeto%20Vendas%20Curso/src/projeto/view/FrmDetalhesDavenda.java</file>
         </group>
     </open-files>
 </project-private>
