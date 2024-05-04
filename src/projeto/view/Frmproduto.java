@@ -78,7 +78,7 @@ public class Frmproduto extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,10 +283,7 @@ public class Frmproduto extends javax.swing.JFrame {
 
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código:", "Descrição:", "Preço:", "Qtd. Estoque", "Fornecedore:"
@@ -670,7 +667,7 @@ public class Frmproduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel painel_dados;
     private javax.swing.JTable tabelaProdutos;
     private javax.swing.JTextField txtcodigo;

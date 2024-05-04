@@ -101,7 +101,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -484,7 +484,7 @@ public class Frmcliente extends javax.swing.JFrame {
                     .addComponent(btnpesquisar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta de cliente", jPanel3);
@@ -827,12 +827,12 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel painel_dados;
-    private javax.swing.JTable tabelaClientes;
+    public javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;

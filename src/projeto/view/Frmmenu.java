@@ -7,6 +7,7 @@ package projeto.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,6 +132,11 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu2.setText("Funcionarios");
 
         jMenuItem2.setText("Controlo de Funcionários");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -139,6 +145,11 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu3.setText("Fornecedores");
 
         jMenuItem3.setText("Controlo de Fornecedores");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -150,6 +161,11 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu6.add(jMenuItem4);
 
         jMenuItem5.setText("Consulta de Produto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem5);
 
         jMenuBar1.add(jMenu6);
@@ -158,12 +174,27 @@ public class Frmmenu extends javax.swing.JFrame {
         historico.setText("Vendas");
 
         jMenuItem6.setText("Abrir PDV");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         historico.add(jMenuItem6);
 
         posicao.setText("Posição do dia");
+        posicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicaoActionPerformed(evt);
+            }
+        });
         historico.add(posicao);
 
         jMenuItem8.setText("Historico de Vendas");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         historico.add(jMenuItem8);
 
         jMenuBar1.add(historico);
@@ -172,12 +203,22 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu5.setText("configuração");
 
         jMenuItem9.setText("Trocar de Usuario");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
 
         jMenuBar1.add(jMenu5);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
         jMenu7.setText("Sair");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -197,7 +238,10 @@ public class Frmmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        // abrir o formulario de clientes apartir do menu principal:
+        Frmcliente tela = new Frmcliente();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -207,6 +251,74 @@ public class Frmmenu extends javax.swing.JFrame {
          lblusuario.setText(usuariologado);
          this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+
+
+        // metodo trocar de user:
+        
+        FrmLogin teladelogin= new FrmLogin();
+        
+        this.dispose();
+        teladelogin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        
+         // metodo sair so sistema:
+         int op;
+         op=JOptionPane.showConfirmDialog(null,"vovcê tem certeza que deseja sair??");
+         if (op==0){
+             System.exit(0);
+         }
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+
+
+        // abrir o formulario de produto apartir do menu principal:
+        Frmproduto tela = new Frmproduto();
+        tela.jTabbedPane1.setSelectedIndex(1);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+       // abrir o formulario de funcionario apartir do menu principal:
+        Frmfuncionario tela = new Frmfuncionario();
+       
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       
+        // abrir o formulario de vendas apartir do menu principal:
+        Frmvendas tela = new Frmvendas();
+       
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        Frmfuncionario tela = new Frmfuncionario();
+       
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void posicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicaoActionPerformed
+        // abrir o formulario de posicao do dia apartir do menu principal:
+        FrmTotaldaVendaPorDia tela = new FrmTotaldaVendaPorDia();
+       
+        tela.setVisible(true);
+    }//GEN-LAST:event_posicaoActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+
+        // abrir o formulario de funcionario apartir do menu principal:
+        Frmhistorico tela = new Frmhistorico();
+       
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
