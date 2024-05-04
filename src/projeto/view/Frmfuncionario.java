@@ -317,7 +317,7 @@ public class Frmfuncionario extends javax.swing.JFrame {
         jLabel19.setText("Nilvel de Acesso:");
 
         cbunivel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbunivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Administrador" }));
+        cbunivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
 
         javax.swing.GroupLayout painel_dadosLayout = new javax.swing.GroupLayout(painel_dados);
         painel_dados.setLayout(painel_dadosLayout);

@@ -276,10 +276,30 @@ public class FuncionarioDAO {
               ResultSet rs = stmt.executeQuery();
               if(rs.next()){
                   // usuario logou
+                  
+                  // caso usuario seja do tipo admin
+                  if(rs.getString("nivel_acesso").equals("Admin")){
+                       
                   JOptionPane.showMessageDialog(null, "seja bem vindo ao sistema");
                   Frmmenu tela = new Frmmenu();
                   tela.usuariologado =rs.getString("nome");
                   tela.setVisible(true);
+                  
+                  // Caso usuario seja do tipo limitado
+                  } else if(rs.getString("nivel_acesso").equals("User")){
+                      
+                  JOptionPane.showMessageDialog(null, "seja bem vindo ao sistema");
+                  Frmmenu tela = new Frmmenu();
+                  tela.usuariologado =rs.getString("nome");
+                  // desabeitar menu
+                  tela.posicao.setEnabled(false);
+                  tela.historico.setVisible(false);
+                  
+                  tela.setVisible(true);
+                      
+                      
+                  }
+                 
               } else {
                   // dados incorretos
                    JOptionPane.showMessageDialog(null, "email ou senha incorreto");
